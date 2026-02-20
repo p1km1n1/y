@@ -1,2 +1,2147 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<h1>Y</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Younis — Android & Flutter Developer</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --white: #ffffff;
+      --off: #f8f8f6;
+      --ink: #0a0a0a;
+      --ink2: #2a2a2a;
+      --ink3: #666;
+      --blue: #1a4fff;
+      --blue-l: #4070ff;
+      --blue-pale: #eef2ff;
+      /* --border:#ff3a04; */
+      --border: #e5e5e0;
+      --border2: #d0d0cc;
+      --font: 'Syne', sans-serif;
+      --mono: 'DM Mono', monospace;
+      --body: 'DM Sans', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--body);
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--off)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--blue);
+      border-radius: 99px
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 6%;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo span {
+      color: var(--blue)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      color: var(--ink3);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      font-family: var(--body);
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--blue);
+      transition: width 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink)
+    }
+
+    .nav-links a:hover::after {
+      width: 100%
+    }
+
+    .nav-cta {
+      padding: 8px 20px;
+      background: var(--ink) !important;
+      color: var(--white) !important;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+      font-size: 0.85rem !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--blue) !important
+    }
+
+    .nav-cta::after {
+      display: none !important
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 6% 60px;
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .hero-rule {
+      position: absolute;
+      background: var(--border);
+      pointer-events: none;
+    }
+
+    .hero-rule.h {
+      width: 100%;
+      height: 1px;
+      left: 0
+    }
+
+    .hero-rule.h1 {
+      top: 35%
+    }
+
+    .hero-rule.h2 {
+      top: 70%
+    }
+
+    .hero-rule.v {
+      width: 1px;
+      height: 100%;
+      top: 0
+    }
+
+    .hero-rule.v1 {
+      left: 33%
+    }
+
+    .hero-rule.v2 {
+      left: 66%
+    }
+
+    .hero-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--blue);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px var(--white), 0 0 0 4px var(--blue);
+    }
+
+    .hero-dot.d1 {
+      top: 35%;
+      left: 33%;
+      transform: translate(-50%, -50%)
+    }
+
+    .hero-dot.d2 {
+      top: 70%;
+      left: 66%;
+      transform: translate(-50%, -50%)
+    }
+
+    .hero-aside {
+      position: absolute;
+      right: 6%;
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink3);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-aside::before {
+      content: '';
+      display: block;
+      width: 1.5px;
+      height: 40px;
+      background: var(--ink3)
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 880px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--blue);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      padding: 5px 12px;
+      border: 1px solid var(--blue);
+      border-radius: 3px;
+      background: var(--blue-pale);
+    }
+
+    .hero-tag-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--blue);
+      border-radius: 50%;
+      animation: blink 1.5s ease infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.3
+      }
+    }
+
+    .hero-name {
+      font-family: var(--font);
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -3px;
+      margin-bottom: 24px;
+      color: var(--ink);
+    }
+
+    .hero-name .blue {
+      color: var(--blue)
+    }
+
+    .hero-name .outline {
+      -webkit-text-stroke: 2px var(--ink);
+      color: transparent;
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--ink3);
+      max-width: 520px;
+      line-height: 1.75;
+      margin-bottom: 44px;
+      font-weight: 400;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap
+    }
+
+    .btn {
+      padding: 13px 28px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      font-family: var(--body);
+      border: 1.5px solid transparent;
+    }
+
+    .btn-dark {
+      background: var(--ink);
+      color: var(--white);
+      border-color: var(--ink)
+    }
+
+    .btn-dark:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      transform: translateY(-2px)
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--border2)
+    }
+
+    .btn-outline:hover {
+      border-color: var(--ink);
+      transform: translateY(-2px)
+    }
+
+    .hero-chips {
+      position: absolute;
+      right: 8%;
+      bottom: 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1;
+    }
+
+    .hero-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink2);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      white-space: nowrap;
+    }
+
+    .hero-chip-icon {
+      color: var(--blue);
+      font-size: 1rem;
+      width: 18px;
+      text-align: center
+    }
+
+    /* ─── SECTION BASE ─── */
+    section {
+      padding: 100px 6%;
+      position: relative
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto
+    }
+
+    .section-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--blue);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--blue);
+    }
+
+    .section-title {
+      font-family: var(--font);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      color: var(--ink);
+    }
+
+    .section-title span {
+      color: var(--blue)
+    }
+
+    .section-sub {
+      color: var(--ink3);
+      font-size: 1rem;
+      max-width: 520px;
+      line-height: 1.75;
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      background: var(--off);
+      border-top: 1.5px solid var(--border);
+      border-bottom: 1.5px solid var(--border)
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 60px;
+    }
+
+    .about-left {}
+
+    .about-avatar {
+      width: 280px;
+      height: 280px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-avatar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 8px,
+          rgba(108, 142, 255, 0.04) 8px, rgba(26, 79, 255, 0.04) 9px);
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      background: var(--blue);
+      color: var(--white);
+      padding: 8px 14px;
+      border-radius: 0 0 12px 0;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+    }
+
+    .about-text h3 {
+      font-family: var(--font);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      color: var(--ink);
+    }
+
+    .about-text p {
+      color: var(--ink3);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-size: 0.975rem;
+    }
+
+    .about-facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .fact {
+      padding: 18px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .fact:hover {
+      border-color: var(--blue);
+      transform: translateY(-3px)
+    }
+
+    .fact-num {
+      font-family: var(--font);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .fact-label {
+      font-size: 0.78rem;
+      color: var(--ink3);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* ─── SKILLS ─── */
+    #skills {
+      background: var(--white)
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .domain {
+      padding: 36px 28px;
+      background: var(--white);
+      border-right: 1.5px solid var(--border);
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .domain:last-child {
+      border-right: none
+    }
+
+    .domain::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--blue);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .domain:hover {
+      background: var(--off)
+    }
+
+    .domain:hover::before {
+      transform: scaleX(1)
+    }
+
+    .domain-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--blue);
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .domain-icon {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .domain-title {
+      font-family: var(--font);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
+
+    .domain-desc {
+      font-size: 0.875rem;
+      color: var(--ink3);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .domain-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px
+    }
+
+    .tag {
+      padding: 3px 10px;
+      background: var(--off);
+      border: 1px solid var(--border2);
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      color: var(--ink2);
+      font-weight: 500;
+    }
+
+    /* ─── SKILL BARS ─── */
+    .bars-section {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+    }
+
+    .bar-group-title {
+      font-family: var(--font);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      margin-bottom: 20px;
+      color: var(--ink);
+      padding-bottom: 10px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .bar-item {
+      margin-bottom: 16px
+    }
+
+    .bar-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px
+    }
+
+    .bar-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink2)
+    }
+
+    .bar-pct {
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      color: var(--blue)
+    }
+
+    .bar-track {
+      height: 4px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-l));
+      width: 0;
+      transition: width 1.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* ─── TECH BADGES ─── */
+    .tech-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 48px;
+    }
+
+    .tech-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 99px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink2);
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .tech-pill:hover {
+      border-color: var(--blue);
+      background: var(--blue-pale);
+      color: var(--blue)
+    }
+
+    .tech-pill-icon {
+      font-size: 0.95rem
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects {
+      background: var(--off);
+      border-top: 1.5px solid var(--border);
+      border-bottom: 1.5px solid var(--border)
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 60px;
+    }
+
+    .project-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.25s;
+      position: relative;
+    }
+
+    .project-card.wide {
+      grid-column: span 2
+    }
+
+    .project-card:hover {
+      border-color: var(--blue);
+      box-shadow: 0 12px 40px rgba(26, 79, 255, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .project-thumb {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      font-size: 2.8rem;
+    }
+
+    .project-thumb.flutter {
+      background: linear-gradient(135deg, #e8f5fe, #c3dffe)
+    }
+
+    .project-thumb.android {
+      background: linear-gradient(135deg, #e8feef, #c3fdd2)
+    }
+
+    .project-thumb.security {
+      background: linear-gradient(135deg, #fff8e8, #ffe8c3)
+    }
+
+    .project-thumb.web {
+      background: linear-gradient(135deg, #f0e8ff, #d4c3fe)
+    }
+
+    .project-thumb.chat {
+      background: linear-gradient(135deg, #e8feff, #c3f8fe)
+    }
+
+    .project-thumb::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(to top, var(--white), transparent);
+    }
+
+    .project-body {
+      padding: 22px 24px 24px
+    }
+
+    .project-type {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--blue);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .project-type::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: var(--blue);
+      border-radius: 50%;
+    }
+
+    .project-title {
+      font-family: var(--font);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--ink3);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px
+    }
+
+    .project-links {
+      display: flex;
+      gap: 10px
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1.5px solid transparent;
+      font-family: var(--body);
+    }
+
+    .pl-dark {
+      background: var(--ink);
+      color: var(--white);
+      border-color: var(--ink)
+    }
+
+    .pl-dark:hover {
+      background: var(--blue);
+      border-color: var(--blue)
+    }
+
+    .pl-ghost {
+      background: transparent;
+      color: var(--ink2);
+      border-color: var(--border2)
+    }
+
+    .pl-ghost:hover {
+      border-color: var(--ink);
+      color: var(--ink)
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--white)
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 60px;
+    }
+
+    .contact-info h3 {
+      font-family: var(--font);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+
+    .contact-info p {
+      color: var(--ink3);
+      line-height: 1.8;
+      margin-bottom: 32px;
+      font-size: 0.95rem;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--off);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: all 0.2s;
+    }
+
+    .contact-method:hover {
+      border-color: var(--blue);
+      background: var(--blue-pale);
+      transform: translateX(4px)
+    }
+
+    .cm-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .cm-label {
+      font-size: 0.72rem;
+      color: var(--ink3);
+      margin-bottom: 1px
+    }
+
+    .cm-value {
+      font-size: 0.875rem;
+      font-weight: 600
+    }
+
+    .contact-form {
+      background: var(--off);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 18px
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 7px;
+      color: var(--ink2);
+      letter-spacing: 0.3px;
+    }
+
+    .form-input {
+      width: 100%;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      padding: 11px 14px;
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus {
+      border-color: var(--blue)
+    }
+
+    .form-input::placeholder {
+      color: var(--ink3)
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 120px
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 13px;
+      background: var(--ink);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--body);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: var(--blue);
+      transform: translateY(-2px)
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 28px 6%;
+      border-top: 1.5px solid var(--border);
+      color: var(--ink3);
+      font-size: 0.8rem;
+      background: var(--off);
+      font-family: var(--mono);
+      letter-spacing: 0.5px;
+    }
+
+    footer span {
+      color: var(--blue)
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .reveal.d1 {
+      transition-delay: 0.1s
+    }
+
+    .reveal.d2 {
+      transition-delay: 0.2s
+    }
+
+    .reveal.d3 {
+      transition-delay: 0.3s
+    }
+
+    .reveal.d4 {
+      transition-delay: 0.4s
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:960px) {
+
+      .about-grid,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .skills-grid,
+      .bars-section {
+        grid-template-columns: 1fr
+      }
+
+      .domain {
+        border-right: none;
+        border-bottom: 1.5px solid var(--border)
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr
+      }
+
+      .project-card.wide {
+        grid-column: span 1
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .hero-chips {
+        display: none
+      }
+
+      .hero-aside {
+        display: none
+      }
+    }
+
+    @media(max-width:600px) {
+      .form-row {
+        grid-template-columns: 1fr
+      }
+
+      .hero-btns {
+        flex-direction: column;
+        align-items: flex-start
+      }
+
+      .about-facts {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">&lt;<span>Younis</span>/&gt;</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-rule h h1"></div>
+    <div class="hero-rule h h2"></div>
+    <div class="hero-rule v v1"></div>
+    <div class="hero-rule v v2"></div>
+    <div class="hero-dot d1"></div>
+    <div class="hero-dot d2"></div>
+    <div class="hero-aside">pesums.com &nbsp;·&nbsp; contact@pesums.com</div>
+
+    <div class="hero-content">
+      <div class="hero-tag">
+        <div class="hero-tag-dot"></div>
+        Available for Android &amp; Flutter Projects
+      </div>
+      <h1 class="hero-name">
+        Younis<br />
+        <span class="outline">Android</span> &amp;<br />
+        <span class="blue">Web</span><br />
+        Dev.
+      </h1>
+      <p class="hero-desc">
+        Self-taught. Security-aware. GetX-powered. I build mobile apps
+        that are fast, private, and built to survive production — no shortcuts.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-dark"><i class="fas fa-rocket"></i> View Projects</a>
+        <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Let's Talk</a>
+      </div>
+    </div>
+
+    <div class="hero-chips">
+      <div class="hero-chip"><span class="hero-chip-icon"><svg fill="#a3ff18" width="20px" height="20px"
+            viewBox="0 0 32 32" id="Camada_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+            <style type="text/css">
+              .st0 {
+                fill-rule: evenodd;
+                clip-rule: evenodd;
+              }
+            </style>
+            <path class="st0"
+              d="M13.8,4h4.5v2.2h1.2c0.6,0,1,0.4,1,1v4.6l-0.6,0.8l6.2,10.8l0.9,3.9c0.1,0.5-0.5,0.9-0.9,0.5l-2.9-2.7l-2-3.5  C19.6,22.5,17.9,23,16,23s-3.6-0.5-5.1-1.4l-2,3.5L6,27.8c-0.4,0.4-1.1,0-0.9-0.5l0.9-3.9l2.3-4.1c-1.5-1.7-2.3-4-2.3-6.4  c0-0.4,0-0.8,0.1-1.1h3c-0.1,0.4-0.1,0.7-0.1,1.1c0,1.3,0.4,2.5,1,3.6l2.3-3.9l-0.6-0.8V7.2c0-0.6,0.4-1,1-1h1.2V4z M14.4,15.4  L12.4,19c1.1,0.6,2.3,1,3.6,1s2.6-0.4,3.6-1l-2.1-3.6l-0.8,1c-0.4,0.5-1.2,0.5-1.6,0L14.4,15.4z M14.1,11.8L14.1,11.8  c0.4,0.7,1.1,1.1,1.9,1.1c0.8,0,1.6-0.4,1.9-1.1c0.2-0.3,0.3-0.7,0.3-1.1c0-1.2-1-2.2-2.2-2.2s-2.2,1-2.2,2.2  C13.8,11.1,13.9,11.5,14.1,11.8z" />
+          </svg></span> Flutter &amp; Dart</div>
+      <div class="hero-chip"><span class="hero-chip-icon"><svg width="22px" height="22px" viewBox="-3 0 48 48"
+            version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <title>Android-color</title>
+            <desc>Created with Sketch.</desc>
+            <defs> </defs>
+            <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="Color-" transform="translate(-304.000000, -560.000000)" fill="red">
+                <path
+                  d="M330.727009,569.600905 C329.935377,569.600905 329.294532,568.977195 329.294532,568.206729 C329.294532,567.436264 329.935377,566.815376 330.727009,566.815376 C331.518641,566.815376 332.159486,567.436264 332.159486,568.206729 C332.159486,568.977195 331.518641,569.600905 330.727009,569.600905 L330.727009,569.600905 Z M319.272991,569.600905 C318.481359,569.600905 317.840514,568.977195 317.840514,568.206729 C317.840514,567.436264 318.481359,566.815376 319.272991,566.815376 C320.064623,566.815376 320.705468,567.436264 320.705468,568.206729 C320.705468,568.977195 320.064623,569.600905 319.272991,569.600905 L319.272991,569.600905 Z M331.573737,564.018558 L332.107291,563.233981 L332.640845,562.460694 L333.829743,560.722208 C333.97763,560.507719 333.916736,560.219853 333.696355,560.078742 C333.478873,559.934809 333.180199,559.994075 333.038111,560.208564 L331.222867,562.852982 L330.677713,563.648847 C328.952361,562.996915 327.029826,562.632849 325,562.632849 C322.973074,562.632849 321.047639,562.996915 319.322287,563.648847 L318.780033,562.852982 L318.243579,562.071228 L316.967688,560.208564 C316.819801,559.994075 316.524027,559.937631 316.303645,560.078742 C316.086164,560.219853 316.025269,560.507719 316.170257,560.722208 L317.359155,562.460694 L317.892709,563.233981 L318.429163,564.018558 C314.37821,565.855822 311.637945,569.335616 311.637945,573.317766 L338.362055,573.317766 C338.362055,569.335616 335.62179,565.855822 331.573737,564.018558 Z M311.843828,575.174785 L311.637945,575.174785 L311.637945,595.613286 C311.637945,597.236061 312.992129,598.556859 314.662386,598.556859 L316.842999,598.556859 C316.767606,598.802392 316.727009,599.059214 316.727009,599.330147 L316.727009,605.214471 C316.727009,606.75258 318.011599,608 319.591964,608 C321.172328,608 322.456918,606.75258 322.456918,605.214471 L322.456918,599.330147 C322.456918,599.059214 322.413422,598.802392 322.340928,598.556859 L327.659072,598.556859 C327.586578,598.802392 327.545982,599.059214 327.545982,599.330147 L327.545982,605.214471 C327.545982,606.75258 328.827672,608 330.408036,608 C331.991301,608 333.275891,606.75258 333.275891,605.214471 L333.275891,599.330147 C333.275891,599.059214 333.232394,598.802392 333.157001,598.556859 L335.340514,598.556859 C337.010771,598.556859 338.362055,597.236061 338.362055,595.613286 L338.362055,575.174785 L311.843828,575.174785 Z M306.864954,575.174785 C305.28169,575.174785 304,576.422205 304,577.960314 L304,589.884184 C304,591.422293 305.28169,592.669713 306.864954,592.669713 C308.445319,592.669713 309.727009,591.422293 309.727009,589.884184 L309.727009,577.960314 C309.727009,576.422205 308.445319,575.174785 306.864954,575.174785 Z M343.137945,575.174785 C341.554681,575.174785 340.272991,576.422205 340.272991,577.960314 L340.272991,589.884184 C340.272991,591.422293 341.554681,592.669713 343.137945,592.669713 C344.71831,592.669713 346,591.422293 346,589.884184 L346,577.960314 C346,576.422205 344.71831,575.174785 343.137945,575.174785 Z"
+                  id="Android"> </path>
+              </g>
+            </g>
+          </svg></span> Android &amp; Kotlin</div>
+      <div class="hero-chip"><span class="hero-chip-icon"><svg width="20px" height="20px" viewBox="0 0 16 16"
+            fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M8 16L4.35009 13.3929C2.24773 11.8912 1 9.46667 1 6.88306V3L8 0L15 3V6.88306C15 9.46667 13.7523 11.8912 11.6499 13.3929L8 16ZM12.2071 5.70711L10.7929 4.29289L7 8.08579L5.20711 6.29289L3.79289 7.70711L7 10.9142L12.2071 5.70711Z"
+              fill="#ff5525" />
+          </svg></span> Privacy-First Dev</div>
+      <div class="hero-chip"><span class="hero-chip-icon"><svg width="20px" height="20px" viewBox="0 0 1024 1024"
+            class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <path d="M704 469.333333h-200.533333L640 106.666667H405.333333l-128 448h183.466667L362.666667 960z"
+              fill="#FFC107" />
+          </svg></span> GetX State Mgmt</div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-left reveal">
+          <div style="position:relative;display:inline-block">
+            <div class="about-avatar"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+                <rect x="304.48" y="209.76" width="60.912" height="15.648" />
+                <g>
+                  <rect x="426.352" y="209.76" style="fill:#FF6600;" width="60.912" height="15.648" />
+                  <rect x="60.912" y="209.76" style="fill:#FF6600;" width="182.72" height="15.648" />
+                </g>
+                <rect x="182.72" y="171.472" width="121.808" height="15.648" />
+                <g>
+                  <rect x="365.44" y="171.472" style="fill:#FF6600;" width="60.912" height="15.648" />
+                  <rect x="60.912" y="133.12" style="fill:#FF6600;" width="60.912" height="15.648" />
+                </g>
+                <rect x="182.72" y="133.12" width="60.912" height="15.648" />
+                <rect x="304.48" y="133.12" style="fill:#FF6600;" width="60.912" height="15.648" />
+                <rect x="426.352" y="133.12" width="60.912" height="15.648" />
+                <rect y="248.176" style="fill:#FF6600;" width="60.912" height="15.648" />
+                <rect x="121.808" y="248.176" width="121.808" height="15.648" />
+                <rect x="365.44" y="248.176" width="121.808" height="15.648" />
+                <rect x="207.472" y="324.88" width="60.912" height="15.648" />
+                <g>
+                  <rect x="85.648" y="324.88" style="fill:#FF6600;" width="60.912" height="15.648" />
+                  <rect x="329.28" y="324.88" style="fill:#FF6600;" width="182.72" height="15.648" />
+                </g>
+                <rect x="268.368" y="286.528" width="121.808" height="15.648" />
+                <rect x="24.736" y="286.528" width="60.912" height="15.648" />
+                <rect x="146.56" y="286.528" style="fill:#FF6600;" width="60.912" height="15.648" />
+                <rect x="329.28" y="363.232" width="121.808" height="15.648" />
+                <rect x="85.648" y="363.232" width="121.808" height="15.648" />
+              </svg>
+              <div class="about-badge">younis.pesums.com</div>
+            </div>
+          </div>
+          <div style="margin-top:28px">
+            <p
+              style="font-family:var(--mono);font-size:0.72rem;color:var(--blue);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">
+              Location</p>
+            <p style="font-size:0.95rem;font-weight:600;color:var(--ink)">Remote — Worldwide</p>
+            <p style="font-size:0.85rem;color:var(--ink3);margin-top:4px">contact@pesums.com</p>
+            <p style="font-size:0.85rem;color:var(--ink3)">pesums.com</p>
+          </div>
+        </div>
+
+        <div class="about-text reveal d1">
+          <div class="section-eyebrow">About Me</div>
+          <h2 class="section-title">Self-Taught.<br />Open-Minded.<br /><span>Creative Coder.</span></h2>
+          <p>
+            No classroom gave me this. I learned by building, breaking, and rebuilding until
+            things worked properly. Every line of code I write comes from real practice and
+            real problem-solving — not theory.
+          </p>
+          <p>
+            My world is Android and Flutter. I build cross-platform mobile apps with
+            GetX state management, native Android with Kotlin, and security baked in
+            from the very first commit. I think outside patterns and I solve problems
+            others overlook.
+          </p>
+          <div class="about-facts">
+            <div class="fact reveal d1">
+              <div class="fact-num">100%</div>
+              <div class="fact-label">Self-Taught</div>
+            </div>
+            <div class="fact reveal d2">
+              <div class="fact-num">0</div>
+              <div class="fact-label">Shortcuts Taken</div>
+            </div>
+            <div class="fact reveal d3">
+              <div class="fact-num">GetX</div>
+              <div class="fact-label">State Management</div>
+            </div>
+            <div class="fact reveal d4">
+              <div class="fact-num">∞</div>
+              <div class="fact-label">Curiosity</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-eyebrow">What I Do</div>
+        <h2 class="section-title">Core <span>Domains</span></h2>
+        <p class="section-sub">Three pillars — each built from real experience, not tutorials.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="domain reveal d1">
+          <span class="domain-num">01 —</span>
+          <span class="domain-icon"><svg fill="#1a4fff" width="80px" height="80px" viewBox="0 0 35 35"
+              data-name="Layer 2" id="ac59cc0a-8895-4ad6-9f65-67566b7e9681" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M27.059,31.25H7.941A4.2,4.2,0,0,1,3.75,27.059V7.941A4.2,4.2,0,0,1,7.941,3.75H27.059A4.2,4.2,0,0,1,31.25,7.941V27.059A4.2,4.2,0,0,1,27.059,31.25ZM7.941,6.25A1.693,1.693,0,0,0,6.25,7.941V27.059A1.693,1.693,0,0,0,7.941,28.75H27.059a1.693,1.693,0,0,0,1.691-1.691V7.941A1.693,1.693,0,0,0,27.059,6.25Z" />
+              <path
+                d="M22.119,24.75H12.881a2.635,2.635,0,0,1-2.631-2.631V12.881a2.634,2.634,0,0,1,2.631-2.631h9.238a2.634,2.634,0,0,1,2.631,2.631v9.238A2.635,2.635,0,0,1,22.119,24.75Zm-9.238-12a.131.131,0,0,0-.131.131v9.238a.131.131,0,0,0,.131.131h9.238a.131.131,0,0,0,.131-.131V12.881a.131.131,0,0,0-.131-.131Z" />
+              <path
+                d="M12.982,4.4A1.25,1.25,0,0,1,11.734,3.2l-.034-1A1.25,1.25,0,0,1,12.908.905,1.263,1.263,0,0,1,14.2,2.112l.034,1A1.252,1.252,0,0,1,13.025,4.4Z" />
+              <path
+                d="M17.516,4.4A1.251,1.251,0,0,1,16.267,3.2l-.033-1A1.249,1.249,0,0,1,17.442.905a1.223,1.223,0,0,1,1.291,1.208l.033,1A1.25,1.25,0,0,1,17.558,4.4Z" />
+              <path
+                d="M22.049,4.4A1.251,1.251,0,0,1,20.8,3.2l-.033-1A1.249,1.249,0,0,1,21.975.905a1.22,1.22,0,0,1,1.291,1.208l.033,1A1.25,1.25,0,0,1,22.091,4.4Z" />
+              <path d="M32.081,23.334a1.25,1.25,0,0,1-.041-2.5l1-.034a1.25,1.25,0,1,1,.083,2.5l-1,.034Z" />
+              <path d="M32.081,18.8a1.25,1.25,0,0,1-.042-2.5l1-.034a1.25,1.25,0,1,1,.085,2.5l-1,.034Z" />
+              <path d="M32.081,14.266a1.25,1.25,0,0,1-.041-2.5l1-.033a1.25,1.25,0,1,1,.083,2.5l-1,.033Z" />
+              <path
+                d="M22.066,34.1a1.25,1.25,0,0,1-1.249-1.208l-.033-1A1.251,1.251,0,0,1,21.991,30.6,1.238,1.238,0,0,1,23.283,31.8l.033,1a1.249,1.249,0,0,1-1.207,1.291Z" />
+              <path
+                d="M17.532,34.1a1.249,1.249,0,0,1-1.248-1.209l-.033-1a1.25,1.25,0,0,1,1.208-1.29A1.237,1.237,0,0,1,18.75,31.8l.033,1a1.249,1.249,0,0,1-1.208,1.29Z" />
+              <path
+                d="M13,34.1a1.249,1.249,0,0,1-1.248-1.209l-.034-1a1.25,1.25,0,0,1,2.5-.082l.034,1a1.25,1.25,0,0,1-1.208,1.29Z" />
+              <path d="M1.918,14.216a1.25,1.25,0,0,1-.041-2.5l1-.033a1.25,1.25,0,1,1,.083,2.5l-1,.033Z" />
+              <path d="M1.918,18.75a1.25,1.25,0,0,1-.041-2.5l1-.034a1.25,1.25,0,1,1,.083,2.5l-1,.034Z" />
+              <path
+                d="M1.918,23.284a1.25,1.25,0,0,1-.042-2.5l1-.034a1.269,1.269,0,0,1,1.292,1.206,1.251,1.251,0,0,1-1.207,1.292l-1,.034Z" />
+            </svg></span>
+          <div class="domain-title">Flutter Development</div>
+          <div class="domain-desc">Cross-platform apps with clean architecture, smooth animations, and GetX powering
+            every state transition. Built for production.</div>
+          <div class="domain-tags">
+            <span class="tag">Flutter</span>
+            <span class="tag">Dart</span>
+            <span class="tag">GetX</span>
+            <span class="tag">Clean Arch</span>
+            <span class="tag">REST API</span>
+            <span class="tag">Firebase</span>
+          </div>
+        </div>
+
+        <div class="domain reveal d2">
+          <span class="domain-num">02 —</span>
+          <span class="domain-icon"><svg width="80px" height="80px" viewBox="-3 0 48 48" version="1.1"
+              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+              <title>Android-color</title>
+              <desc>Created with Sketch.</desc>
+              <defs>
+
+              </defs>
+              <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Color-" transform="translate(-304.000000, -560.000000)" fill="#95CF00">
+                  <path
+                    d="M330.727009,569.600905 C329.935377,569.600905 329.294532,568.977195 329.294532,568.206729 C329.294532,567.436264 329.935377,566.815376 330.727009,566.815376 C331.518641,566.815376 332.159486,567.436264 332.159486,568.206729 C332.159486,568.977195 331.518641,569.600905 330.727009,569.600905 L330.727009,569.600905 Z M319.272991,569.600905 C318.481359,569.600905 317.840514,568.977195 317.840514,568.206729 C317.840514,567.436264 318.481359,566.815376 319.272991,566.815376 C320.064623,566.815376 320.705468,567.436264 320.705468,568.206729 C320.705468,568.977195 320.064623,569.600905 319.272991,569.600905 L319.272991,569.600905 Z M331.573737,564.018558 L332.107291,563.233981 L332.640845,562.460694 L333.829743,560.722208 C333.97763,560.507719 333.916736,560.219853 333.696355,560.078742 C333.478873,559.934809 333.180199,559.994075 333.038111,560.208564 L331.222867,562.852982 L330.677713,563.648847 C328.952361,562.996915 327.029826,562.632849 325,562.632849 C322.973074,562.632849 321.047639,562.996915 319.322287,563.648847 L318.780033,562.852982 L318.243579,562.071228 L316.967688,560.208564 C316.819801,559.994075 316.524027,559.937631 316.303645,560.078742 C316.086164,560.219853 316.025269,560.507719 316.170257,560.722208 L317.359155,562.460694 L317.892709,563.233981 L318.429163,564.018558 C314.37821,565.855822 311.637945,569.335616 311.637945,573.317766 L338.362055,573.317766 C338.362055,569.335616 335.62179,565.855822 331.573737,564.018558 Z M311.843828,575.174785 L311.637945,575.174785 L311.637945,595.613286 C311.637945,597.236061 312.992129,598.556859 314.662386,598.556859 L316.842999,598.556859 C316.767606,598.802392 316.727009,599.059214 316.727009,599.330147 L316.727009,605.214471 C316.727009,606.75258 318.011599,608 319.591964,608 C321.172328,608 322.456918,606.75258 322.456918,605.214471 L322.456918,599.330147 C322.456918,599.059214 322.413422,598.802392 322.340928,598.556859 L327.659072,598.556859 C327.586578,598.802392 327.545982,599.059214 327.545982,599.330147 L327.545982,605.214471 C327.545982,606.75258 328.827672,608 330.408036,608 C331.991301,608 333.275891,606.75258 333.275891,605.214471 L333.275891,599.330147 C333.275891,599.059214 333.232394,598.802392 333.157001,598.556859 L335.340514,598.556859 C337.010771,598.556859 338.362055,597.236061 338.362055,595.613286 L338.362055,575.174785 L311.843828,575.174785 Z M306.864954,575.174785 C305.28169,575.174785 304,576.422205 304,577.960314 L304,589.884184 C304,591.422293 305.28169,592.669713 306.864954,592.669713 C308.445319,592.669713 309.727009,591.422293 309.727009,589.884184 L309.727009,577.960314 C309.727009,576.422205 308.445319,575.174785 306.864954,575.174785 Z M343.137945,575.174785 C341.554681,575.174785 340.272991,576.422205 340.272991,577.960314 L340.272991,589.884184 C340.272991,591.422293 341.554681,592.669713 343.137945,592.669713 C344.71831,592.669713 346,591.422293 346,589.884184 L346,577.960314 C346,576.422205 344.71831,575.174785 343.137945,575.174785 Z"
+                    id="Android">
+
+                  </path>
+                </g>
+              </g>
+            </svg></span>
+          <div class="domain-title">Android + Kotlin</div>
+          <div class="domain-desc">Native Android with Kotlin — used widely as the backbone for Flutter app packages,
+            background services, and system-level integrations.</div>
+          <div class="domain-tags">
+            <span class="tag">Kotlin</span>
+            <span class="tag">Android SDK</span>
+            <span class="tag">Jetpack</span>
+            <span class="tag">Room DB</span>
+            <span class="tag">MVVM</span>
+            <span class="tag">Play Store</span>
+          </div>
+        </div>
+
+        <div class="domain reveal d3">
+          <span class="domain-num">03 —</span>
+          <span class="domain-icon"><svg fill="#ff4a18" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" width="80px" height="80px" viewBox="0 0 400 400"
+              xml:space="preserve">
+              <g>
+                <g>
+                  <g>
+                    <path
+                      d="M261.543,166.668h-0.524v-27.582c0-29.719-24.179-53.898-53.896-53.898h-14.239c-29.721,0-53.899,24.18-53.899,53.898 v27.582h-0.524c-8.687,0-15.73,7.047-15.73,15.734v100.313c0,8.689,7.044,15.734,15.73,15.734h123.086 c8.688,0,15.73-7.045,15.73-15.734V182.402C277.273,173.715,270.229,166.668,261.543,166.668z M215.73,246.475 c0,8.688-7.043,15.73-15.73,15.73c-8.688,0-15.73-7.043-15.73-15.73v-19.664c0-8.688,7.042-15.729,15.73-15.729 c8.688,0,15.73,7.043,15.73,15.729V246.475z M230.219,166.668h-60.438v-27.582c0-12.737,10.362-23.098,23.1-23.098h14.239 c12.735,0,23.099,10.36,23.099,23.098V166.668L230.219,166.668z" />
+                    <path
+                      d="M352.987,328.874l1.75-2.132C384.348,290.73,400,246.902,400,200c0-47.661-16.123-92.051-46.63-128.368l-1.699-2.021 l0.917-2.479c1.655-4.473,2.494-9.182,2.494-13.986c0-22.245-18.097-40.342-40.34-40.342c-8.121,0-15.95,2.406-22.644,6.951 l-2.179,1.481l-2.369-1.153C260.23,6.756,230.773,0,200,0c-31.787,0-62.099,7.176-90.095,21.331l-2.526,1.276l-2.26-1.702 c-7.035-5.3-15.419-8.104-24.247-8.104c-22.243,0-40.338,18.097-40.338,40.342c0,5.989,1.288,11.762,3.829,17.157l1.209,2.569 l-1.777,2.215C15.145,110.766,0,153.964,0,200c0,46.902,15.652,90.73,45.262,126.742l1.75,2.132l-1.081,2.537 c-2.128,4.999-3.208,10.311-3.208,15.787c0,22.241,18.097,40.338,40.34,40.338c8.577,0,16.771-2.665,23.7-7.705l2.224-1.616 l2.466,1.219C139.045,393.08,168.837,400,200,400s60.955-6.92,88.546-20.566l2.466-1.219l2.226,1.616 c6.928,5.04,15.123,7.705,23.698,7.705c22.243,0,40.342-18.097,40.342-40.338c0-5.479-1.08-10.788-3.208-15.787L352.987,328.874z M335.038,307.572l-1.998,2.502l-3.028-1.035c-4.221-1.446-8.621-2.184-13.077-2.184c-22.241,0-40.34,18.098-40.34,40.343 c0,1.385,0.073,2.788,0.214,4.171l0.328,3.184l-2.89,1.383c-23.311,11.145-48.29,16.791-74.248,16.791 s-50.939-5.646-74.248-16.791l-2.89-1.383l0.329-3.184c0.141-1.383,0.214-2.786,0.214-4.171c0-22.245-18.097-40.343-40.34-40.343 c-4.456,0-8.855,0.735-13.077,2.184l-3.028,1.035l-1.998-2.502C40.305,276.685,27.273,239.484,27.273,200 c0-39.093,12.793-75.996,36.996-106.714l1.92-2.438l2.969,0.899c3.796,1.151,7.737,1.734,11.714,1.734 c22.243,0,40.34-18.097,40.34-40.338c0-1.104-0.053-2.265-0.166-3.541l-0.267-3.089l2.778-1.378 c23.921-11.853,49.64-17.863,76.442-17.863c25.153,0,49.433,5.323,72.166,15.818l3.04,1.402l-0.438,3.318 c-0.239,1.821-0.361,3.614-0.361,5.332c0,22.241,18.097,40.338,40.339,40.338c5.085,0,10.059-0.945,14.785-2.808l3.115-1.23 l2.097,2.611c24.497,30.519,37.985,68.854,37.985,107.944C372.727,239.484,359.695,276.686,335.038,307.572z" />
+                  </g>
+                </g>
+              </g>
+            </svg></span>
+          <div class="domain-title">Security &amp; Privacy</div>
+          <div class="domain-desc">Security isn't a feature I add last. App hardening, encrypted storage, threat
+            monitoring, and privacy-first architecture from line one.</div>
+          <div class="domain-tags">
+            <span class="tag">App Hardening</span>
+            <span class="tag">Encryption</span>
+            <span class="tag">Threat Intel</span>
+            <span class="tag">JS Security</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Cyber Monitoring</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill bars -->
+      <div class="bars-section">
+        <div class="reveal d1">
+          <div class="bar-group-title">Mobile Development</div>
+          <div class="bar-item">
+            <div class="bar-top"><span class="bar-name">Flutter / Dart</span><span class="bar-pct">92%</span></div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="92"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-top"><span class="bar-name">Android / Kotlin</span><span class="bar-pct">85%</span></div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="85"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-top"><span class="bar-name">GetX State Management</span><span class="bar-pct">90%</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="90"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-top"><span class="bar-name">Firebase Integration</span><span class="bar-pct">80%</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="80"></div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal d2">
+          <div class="bar-group-title">Security &amp; Web</div>
+          <div class="bar-item">
+            <div class="bar-top"><span class="bar-name">App Security &amp; Hardening</span><span
+                class="bar-pct">87%</span></div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="87"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-top"><span class="bar-name">JavaScript &amp; Web Security</span><span
+                class="bar-pct">83%</span></div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="83"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-top"><span class="bar-name">Cyber Threat Intelligence</span><span class="bar-pct">78%</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="78"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-top"><span class="bar-name">Linux &amp; Scripting</span><span class="bar-pct">82%</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="82"></div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal d3">
+          <div class="bar-group-title">Engineering</div>
+          <div class="bar-item">
+            <div class="bar-top"><span class="bar-name">Deep Debugging</span><span class="bar-pct">95%</span></div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="95"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-top"><span class="bar-name">Clean Architecture</span><span class="bar-pct">88%</span></div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="88"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-top"><span class="bar-name">REST API Integration</span><span class="bar-pct">86%</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="86"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-top"><span class="bar-name">Python &amp; Automation</span><span class="bar-pct">80%</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="80"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech pills -->
+      <div class="tech-row reveal">
+        <div class="tech-pill"><span class="tech-pill-icon"><svg width="18px" height="18px" viewBox="0 0 32 32"
+              xmlns="http://www.w3.org/2000/svg">
+              <title>file_type_flutter</title>
+              <polyline
+                points="15.383 18.316 18.744 15.042 27.093 15.042 19.697 22.438 15.383 18.316 15.383 18.316 15.383 18.316 15.383 18.316 15.383 18.316"
+                style="fill:#40d0fd" />
+              <polygon points="4.907 16.125 9.106 20.424 27.093 2.287 18.744 2.287 4.907 16.125"
+                style="fill:#41d0fd;isolation:isolate" />
+              <polygon points="11.176 22.479 15.435 26.675 19.697 22.438 15.383 18.316 11.176 22.479"
+                style="fill:#1fbcfd" />
+              <polygon points="15.435 26.675 19.697 22.438 26.989 29.813 18.593 29.813 15.435 26.675"
+                style="fill:#095a9d" />
+              <polygon points="15.435 26.675 19.406 25.354 18.068 24.057 15.435 26.675" style="fill:#0e5199" />
+            </svg></span> Flutter</div>
+        <div class="tech-pill"><span class="tech-pill-icon">🎯</span> Dart</div>
+        <div class="tech-pill"><span class="tech-pill-icon">
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools --> <svg width="18px"
+              height="18px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+              <defs>
+                <linearGradient x1="26.599%" y1="146.559136%" x2="73.8446667%" y2="52.3813953%" id="linearGradient-1">
+                  <stop stop-color="#0095D5" offset="9.677%"> </stop>
+                  <stop stop-color="#238AD9" offset="30.07%"> </stop>
+                  <stop stop-color="#557BDE" offset="62.11%"> </stop>
+                  <stop stop-color="#7472E2" offset="86.43%"> </stop>
+                  <stop stop-color="#806EE3" offset="100%"> </stop>
+                </linearGradient>
+                <linearGradient x1="13.9840532%" y1="37.1049231%" x2="68.682392%" y2="-13.5538462%"
+                  id="linearGradient-2">
+                  <stop stop-color="#0095D5" offset="11.83%"> </stop>
+                  <stop stop-color="#3C83DC" offset="41.78%"> </stop>
+                  <stop stop-color="#6D74E1" offset="69.62%"> </stop>
+                  <stop stop-color="#806EE3" offset="83.33%"> </stop>
+                </linearGradient>
+                <linearGradient x1="-16.8361667%" y1="91.9396667%" x2="76.2191667%" y2="-1.11566667%"
+                  id="linearGradient-3">
+                  <stop stop-color="#C757BC" offset="10.75%"> </stop>
+                  <stop stop-color="#D0609A" offset="21.38%"> </stop>
+                  <stop stop-color="#E1725C" offset="42.54%"> </stop>
+                  <stop stop-color="#EE7E2F" offset="60.48%"> </stop>
+                  <stop stop-color="#F58613" offset="74.3%"> </stop>
+                  <stop stop-color="#F88909" offset="82.32%"> </stop>
+                </linearGradient>
+              </defs>
+              <g>
+                <polygon fill="url(#linearGradient-1)" points="0 256 128.426667 127.573333 256 256"> </polygon>
+                <polygon fill="url(#linearGradient-2)" points="0 0 128.426667 0 0 138.666667"> </polygon>
+                <polygon fill="url(#linearGradient-3)"
+                  points="128.426667 0 0 135.253333 0 256 128.426667 127.573333 256 0"> </polygon>
+              </g>
+            </svg>
+          </span> Kotlin</div>
+        <div class="tech-pill"><span class="tech-pill-icon"><svg width="20px" height="20px" viewBox="0 0 1024 1024"
+              class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <path d="M704 469.333333h-200.533333L640 106.666667H405.333333l-128 448h183.466667L362.666667 960z"
+                fill="#FFC107" />
+            </svg></span> GetX</div>
+        <div class="tech-pill"><span class="tech-pill-icon">🔥</span> Firebase</div>
+        <div class="tech-pill"><span class="tech-pill-icon">
+            <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+            <svg fill="#000000" width="18px" height="18px" viewBox="0 0 24 24" role="img"
+              xmlns="http://www.w3.org/2000/svg">
+              <title>Microsoft SQL Server icon</title>
+              <path
+                d="M4.724 2.505s-.08.127-.004.315c.046.116.186.256.34.404 0 0 1.615 1.576 1.813 1.804.895 1.033 1.284 2.05 1.32 3.453.022.9-.151 1.692-.573 2.613-.756 1.649-2.35 3.468-4.81 5.49l.36-.12c.233-.173.548-.359 1.292-.766 1.713-.936 3.636-1.798 5.999-2.686 3.399-1.277 8.99-2.776 12.172-3.263l.331-.051-.05-.08c-.292-.452-.49-.731-.73-1.027-.697-.863-1.542-1.567-2.577-2.146-1.422-.797-3.267-1.416-5.6-1.88a67.93 67.93 0 00-2.191-.375 209.29 209.29 0 01-3.924-.64c-.425-.075-1.06-.181-1.481-.272a9.404 9.404 0 01-.961-.258c-.268-.105-.645-.207-.726-.515zm.936.909c.003-.002.063.017.137.042.136.046.316.1.526.159.146.04.307.084.479.127.218.056.399.104.401.107.024.027.391 1.198.516 1.647.048.172.084.315.081.318a.789.789 0 01-.09-.14c-.424-.746-1.097-1.505-1.874-2.116a3.104 3.104 0 01-.176-.144zm1.79.494c.018-.001.099.012.195.034.619.136 1.725.35 2.435.47.119.02.216.04.216.047a.348.348 0 01-.098.062c-.119.06-.602.349-.763.457-.403.27-.766.559-1.03.821a5.4 5.4 0 01-.197.192c-.003 0-.022-.062-.041-.137a12.09 12.09 0 00-.65-1.779 1.801 1.801 0 01-.071-.165c0-.001 0-.002.004-.002zm3.147.598c.02.007.06.13.129.404a6.05 6.05 0 01.153 1.977l-.012.038-.187-.06c-.388-.124-1.02-.31-1.562-.46a6.625 6.625 0 01-.56-.17c0-.022.449-.471.642-.642.369-.326 1.362-1.098 1.397-1.087zm.25.036c.011-.01 1.504.248 2.182.378.506.097 1.237.25 1.281.269.022.008-.054.05-.297.16-.96.432-1.672.82-2.38 1.293-.186.124-.341.226-.344.226-.004 0-.006-.104-.006-.23 0-.69-.139-1.387-.391-1.976a.688.688 0 01-.045-.12zm3.86.764c.011.011-.038.306-.08.48-.132.54-.482 1.344-.914 2.099a2.26 2.26 0 01-.152.246 1.499 1.499 0 01-.219-.115c-.422-.247-.9-.48-1.425-.697a4.588 4.588 0 01-.278-.12c-.024-.022 1.143-.795 1.762-1.166.495-.297 1.292-.741 1.306-.727zm.276.043c.033 0 .695.18 1.037.283.853.255 1.837.614 2.475.904l.265.12-.187.043c-1.561.36-2.9.773-4.188 1.296-.107.044-.2.08-.207.08a.911.911 0 01.075-.185c.388-.823.638-1.687.703-2.42.006-.067.018-.121.027-.121zm-6.58 1.512c.01-.01.514.108.789.185.413.116 1.292.41 1.292.433 0 .004-.097.089-.215.188-.475.397-.934.813-1.483 1.343a5.27 5.27 0 01-.308.285c-.007 0-.01-.023-.006-.05.083-.611.065-1.395-.05-2.193a1.29 1.29 0 01-.02-.19zm10.61.01c.007.008-.234.385-.384.6-.22.314-.537.726-1.261 1.637l-.954 1.202a9.418 9.418 0 01-.269.333c-.003 0-.05-.066-.103-.146a7.584 7.584 0 00-1.47-1.625 9.59 9.59 0 00-.27-.218.427.427 0 01-.074-.063c0-.01.617-.274 1.088-.466a37.02 37.02 0 012.778-.99c.442-.135.912-.27.919-.264zm.278.073a.93.93 0 01.207.1 12.274 12.274 0 012.428 1.824c.194.19.667.683.66.687l-.363.029c-1.53.115-3.486.44-5.37.893-.128.03-.238.056-.246.056-.007 0 .133-.14.311-.312 1.107-1.063 1.611-1.734 2.205-2.934.088-.178.163-.333.166-.342h.002zm-8.088.83c.051.01.523.23.879.408.325.163.818.426.843.449.003.003-.17.093-.386.201-.683.342-1.268.664-1.878 1.037-.175.107-.32.194-.325.194-.015 0-.01-.013.088-.191a7.702 7.702 0 00.738-2.002c.014-.062.03-.1.041-.097zm-.475.084c.01.01-.112.46-.19.7a9.092 9.092 0 01-.835 1.808l-.09.147-.203-.197a2.671 2.671 0 00-.676-.5 1.009 1.009 0 01-.176-.102c0-.03.62-.593 1.098-.998.343-.29 1.064-.867 1.072-.858zm2.888 1.188l.177.115c.407.264.888.619 1.255.924.206.172.605.53.687.616l.044.047-.294.082a53.8 53.8 0 00-4.45 1.424c-.167.061-.31.112-.32.112-.021 0-.042.019.333-.326.96-.883 1.807-1.856 2.44-2.802zm-.759.19c.009.009-.492.71-.789 1.106-.356.473-.99 1.265-1.426 1.78a8.769 8.769 0 01-.346.397c-.01.003-.015-.05-.016-.133 0-.44-.112-.91-.308-1.308-.083-.168-.097-.208-.08-.224.068-.062 1.127-.666 1.794-1.023.459-.246 1.163-.604 1.171-.595zm-4.59 1.125a3.988 3.988 0 01.812.518c.008.005-.087.083-.21.172-.345.249-.87.644-1.173.886-.32.255-.331.263-.295.207.24-.367.36-.574.486-.84.113-.236.224-.516.304-.76a.675.675 0 01.077-.183zm1.223.96c.017-.003.04.028.139.175.207.31.366.722.407 1.058l.008.073-.497.192c-.89.346-1.711.687-2.266.94-.155.072-.428.202-.607.292-.179.09-.325.16-.325.156 0-.004.112-.089.25-.188 1.087-.79 2.025-1.654 2.732-2.519.075-.092.144-.172.153-.178a.016.016 0 01.006-.002zm-.564.14c.015.014-.401.484-.681.77-.7.715-1.396 1.275-2.256 1.821-.108.069-.206.13-.22.138-.023.014.008-.022.386-.434.238-.259.42-.474.628-.743.136-.177.162-.202.362-.346.537-.388 1.767-1.221 1.781-1.207zM9.925 0c-.08-.01-1.371.455-2.2.791-1.123.457-1.996.894-2.534 1.272-.2.14-.452.393-.488.49a.356.356 0 00-.021.123l.488.46 1.158.37L9.087 4l3.153.542.032-.27-.028-.005-.415-.066-.085-.148a27.702 27.702 0 01-1.177-2.325 12.264 12.264 0 01-.53-1.465C9.969.02 9.962.005 9.925 0zm-.061.186h.005c.003.003.017.105.032.225.062.508.176 1 .354 1.53.134.4.136.377-.024.332-.37-.103-2.032-.388-3.234-.555a8.796 8.796 0 01-.357-.053c-.015-.015.867-.477 1.258-.66.501-.232 1.867-.8 1.966-.819zM6.362 1.814l.141.048c.772.262 2.706.632 3.775.72.12.01.222.021.225.024.003.003-.1.058-.228.122-.515.258-1.083.573-1.476.819-.115.072-.22.13-.235.129a4.868 4.868 0 01-.17-.027l-.144-.023-.365-.355c-.641-.62-1.141-1.1-1.335-1.28zm-.143.114l.511.638c.282.35.564.699.626.774.063.075.111.138.108.14-.014.011-.74-.13-1.125-.219a8.532 8.532 0 01-.803-.212l-.2-.064.001-.049c.003-.245.312-.607.836-.976zm4.352.869c.015.001.032.032.077.131.124.272.51 1.008.603 1.15.03.047.08.05-.433-.033-1.23-.198-1.629-.265-1.629-.273a.36.36 0 01.083-.054 7.13 7.13 0 001.107-.767l.175-.147c.006-.005.012-.008.017-.007zm4.309 8.408l-4.808 1.568-4.18 1.846-1.17.31c-.298.282-.613.568-.948.86-.37.321-.716.612-.98.822a7.46 7.46 0 00-.953.945c-.332.414-.592.854-.704 1.193-.2.61-.103 1.228.285 1.798.495.728 1.48 1.468 2.625 1.972.585.256 1.57.588 2.31.774 1.233.312 3.614.65 4.926.7.266.01.62.01.637-.002.028-.019.233-.405.47-.89.806-1.646 1.389-3.19 1.703-4.508.19-.799.338-1.863.434-3.125.027-.354.037-1.533.016-1.934a13.564 13.564 0 00-.183-1.706.435.435 0 01-.012-.15c.014-.01.059-.025.65-.197zm-1.1.645c.045 0 .16 1.114.191 1.82.006.151.005.247-.004.247-.028 0-.615-.345-1.032-.606a28.716 28.716 0 01-1.162-.772c-.035-.028-.031-.029.266-.131.505-.174 1.704-.558 1.742-.558zm-2.448.803c.03 0 .115.047.315.172.75.47 1.766 1.035 2.2 1.225.136.06.151.036-.16.247-.662.45-1.486.892-2.497 1.342a7.59 7.59 0 01-.331.142.989.989 0 01.043-.2c.245-.905.383-1.82.387-2.554.002-.362.002-.364.037-.373h.006zm-.504.193c.021.022.006.834-.02 1.056a9.206 9.206 0 01-.418 1.837c-.014.017-.511-.468-.676-.66a4.918 4.918 0 01-.669-.973c-.082-.162-.214-.484-.202-.493.056-.04 1.971-.78 1.985-.767zm-2.375.936c.004 0 .008.001.01.004a.881.881 0 01.056.131c.116.315.376.782.602 1.08a6.247 6.247 0 001.017 1.06c.023.02.03.016-.562.24a48.53 48.53 0 01-2.294.8c-.327.106-.604.195-.615.2-.033.011-.023-.009.073-.158.427-.666 1.073-1.97 1.435-2.892.062-.16.122-.32.133-.356.015-.052.031-.07.08-.092a.149.149 0 01.065-.017zm-.728.3c.01.009-.174.398-.356.751-.351.686-.739 1.361-1.253 2.185l-.182.288c-.018.027-.026.018-.082-.094a3.307 3.307 0 01-.28-.842 3.39 3.39 0 01.02-1.083c.047-.227.045-.222.152-.276.462-.237 1.966-.942 1.981-.929zm6.268.255v.154a20.106 20.106 0 01-.255 2.992 9.362 9.362 0 01-1.898-.782c-.354-.194-.865-.507-.85-.522.003-.004.154-.083.334-.177.714-.37 1.395-.77 1.988-1.166.222-.148.555-.389.629-.454zM4.981 15.41c.015 0 .011.028-.012.161a4.137 4.137 0 00-.041.39c-.03.532.057.924.32 1.46.074.15.132.274.129.276-.027.023-2.43.726-3.186.933l-.435.12c-.027.008-.029.002-.02-.06.083-.533.49-1.232 1.058-1.82.378-.39.68-.622 1.195-.915a30.782 30.782 0 01.992-.545zm5.669 1.015c.002-.002.091.045.197.107.777.449 1.86.87 2.783 1.081l.084.02-.115.063c-.482.268-2.071.929-3.694 1.537a68.82 68.82 0 00-.513.194.314.314 0 01-.082.027c0-.004.067-.132.149-.286.456-.852.91-1.887 1.144-2.605.023-.073.044-.135.047-.138zm-.578.19a1.39 1.39 0 01-.063.169 23.534 23.534 0 01-1.261 2.54 9.009 9.009 0 01-.252.433c-.005 0-.114-.066-.244-.145-.77-.472-1.452-1.052-1.9-1.617l-.064-.08.332-.091a23.616 23.616 0 003.19-1.103c.142-.06.26-.109.262-.106zm3.59 1.253c.001 0 .002.001.002.003 0 .08-.183.828-.336 1.37-.128.453-.236.808-.435 1.437a8.533 8.533 0 01-.168.504 15.004 15.004 0 01-3-.841 7.964 7.964 0 01-.639-.283c-.006-.007.213-.11.486-.23 1.655-.721 3.369-1.543 3.955-1.896a.432.432 0 01.135-.064zm-8.287.283c.009.009-.454.671-1.1 1.576l-.587.823c-.097.139-.245.358-.329.488l-.153.236-.162-.137c-.191-.16-.525-.501-.677-.69-.312-.389-.523-.798-.607-1.174-.038-.174-.04-.262-.003-.273a176.26 176.26 0 011.934-.455l1.3-.305c.209-.05.382-.09.384-.089zm.465.178l.117.131a6.763 6.763 0 001.706 1.394c.115.066.202.124.195.128a281.967 281.967 0 01-4.33 1.53.858.858 0 01-.072-.048l-.067-.048.105-.152c.34-.493.768-1.035 1.705-2.162zm2.9 2.073c.003-.003.165.054.362.128.473.177.844.292 1.347.418.617.155 1.51.31 2.038.354.08.006.122.016.11.024-.025.016-.56.194-.953.318a258.526 258.526 0 01-4.636 1.363c-.035.007-.157-.025-.157-.04 0-.009.087-.119.193-.246a22.027 22.027 0 001.476-1.984 56.9 56.9 0 01.22-.335zm-.642.018c.005.005-.253.418-.706 1.132-.192.301-.409.645-.483.762-.075.118-.184.298-.242.4l-.107.185-.054-.014c-.13-.035-1.049-.36-1.291-.456-.301-.12-.615-.264-.846-.389-.289-.156-.655-.388-.627-.397l1.105-.302c1.592-.434 2.473-.683 3.05-.864.109-.033.199-.059.2-.057zm4.523 1.061h.006c.015.038-.575 1.67-.79 2.188-.049.116-.066.145-.092.143a55.54 55.54 0 01-1.433-.2c-.906-.138-2.423-.403-2.806-.49l-.089-.02.543-.122c1.164-.262 1.723-.403 2.29-.577a16.544 16.544 0 002.138-.824c.113-.052.21-.093.233-.098Z" />
+            </svg>
+          </span> SQLite</div>
+        <div class="tech-pill"><span class="tech-pill-icon"><svg fill="#ff4a18" version="1.1" id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+              viewBox="0 0 400 400" xml:space="preserve">
+              <g>
+                <g>
+                  <g>
+                    <path
+                      d="M261.543,166.668h-0.524v-27.582c0-29.719-24.179-53.898-53.896-53.898h-14.239c-29.721,0-53.899,24.18-53.899,53.898 v27.582h-0.524c-8.687,0-15.73,7.047-15.73,15.734v100.313c0,8.689,7.044,15.734,15.73,15.734h123.086 c8.688,0,15.73-7.045,15.73-15.734V182.402C277.273,173.715,270.229,166.668,261.543,166.668z M215.73,246.475 c0,8.688-7.043,15.73-15.73,15.73c-8.688,0-15.73-7.043-15.73-15.73v-19.664c0-8.688,7.042-15.729,15.73-15.729 c8.688,0,15.73,7.043,15.73,15.729V246.475z M230.219,166.668h-60.438v-27.582c0-12.737,10.362-23.098,23.1-23.098h14.239 c12.735,0,23.099,10.36,23.099,23.098V166.668L230.219,166.668z" />
+                    <path
+                      d="M352.987,328.874l1.75-2.132C384.348,290.73,400,246.902,400,200c0-47.661-16.123-92.051-46.63-128.368l-1.699-2.021 l0.917-2.479c1.655-4.473,2.494-9.182,2.494-13.986c0-22.245-18.097-40.342-40.34-40.342c-8.121,0-15.95,2.406-22.644,6.951 l-2.179,1.481l-2.369-1.153C260.23,6.756,230.773,0,200,0c-31.787,0-62.099,7.176-90.095,21.331l-2.526,1.276l-2.26-1.702 c-7.035-5.3-15.419-8.104-24.247-8.104c-22.243,0-40.338,18.097-40.338,40.342c0,5.989,1.288,11.762,3.829,17.157l1.209,2.569 l-1.777,2.215C15.145,110.766,0,153.964,0,200c0,46.902,15.652,90.73,45.262,126.742l1.75,2.132l-1.081,2.537 c-2.128,4.999-3.208,10.311-3.208,15.787c0,22.241,18.097,40.338,40.34,40.338c8.577,0,16.771-2.665,23.7-7.705l2.224-1.616 l2.466,1.219C139.045,393.08,168.837,400,200,400s60.955-6.92,88.546-20.566l2.466-1.219l2.226,1.616 c6.928,5.04,15.123,7.705,23.698,7.705c22.243,0,40.342-18.097,40.342-40.338c0-5.479-1.08-10.788-3.208-15.787L352.987,328.874z M335.038,307.572l-1.998,2.502l-3.028-1.035c-4.221-1.446-8.621-2.184-13.077-2.184c-22.241,0-40.34,18.098-40.34,40.343 c0,1.385,0.073,2.788,0.214,4.171l0.328,3.184l-2.89,1.383c-23.311,11.145-48.29,16.791-74.248,16.791 s-50.939-5.646-74.248-16.791l-2.89-1.383l0.329-3.184c0.141-1.383,0.214-2.786,0.214-4.171c0-22.245-18.097-40.343-40.34-40.343 c-4.456,0-8.855,0.735-13.077,2.184l-3.028,1.035l-1.998-2.502C40.305,276.685,27.273,239.484,27.273,200 c0-39.093,12.793-75.996,36.996-106.714l1.92-2.438l2.969,0.899c3.796,1.151,7.737,1.734,11.714,1.734 c22.243,0,40.34-18.097,40.34-40.338c0-1.104-0.053-2.265-0.166-3.541l-0.267-3.089l2.778-1.378 c23.921-11.853,49.64-17.863,76.442-17.863c25.153,0,49.433,5.323,72.166,15.818l3.04,1.402l-0.438,3.318 c-0.239,1.821-0.361,3.614-0.361,5.332c0,22.241,18.097,40.338,40.339,40.338c5.085,0,10.059-0.945,14.785-2.808l3.115-1.23 l2.097,2.611c24.497,30.519,37.985,68.854,37.985,107.944C372.727,239.484,359.695,276.686,335.038,307.572z" />
+                  </g>
+                </g>
+              </g>
+            </svg></span> AES Encryption</div>
+        <div class="tech-pill"><span class="tech-pill-icon"><svg width="18px" height="18px" viewBox="0 0 32 32"
+              fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M13.0164 2C10.8193 2 9.03825 3.72453 9.03825 5.85185V8.51852H15.9235V9.25926H5.97814C3.78107 9.25926 2 10.9838 2 13.1111L2 18.8889C2 21.0162 3.78107 22.7407 5.97814 22.7407H8.27322V19.4815C8.27322 17.3542 10.0543 15.6296 12.2514 15.6296H19.5956C21.4547 15.6296 22.9617 14.1704 22.9617 12.3704V5.85185C22.9617 3.72453 21.1807 2 18.9836 2H13.0164ZM12.0984 6.74074C12.8589 6.74074 13.4754 6.14378 13.4754 5.40741C13.4754 4.67103 12.8589 4.07407 12.0984 4.07407C11.3378 4.07407 10.7213 4.67103 10.7213 5.40741C10.7213 6.14378 11.3378 6.74074 12.0984 6.74074Z"
+                fill="url(#paint0_linear_87_8204)" />
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M18.9834 30C21.1805 30 22.9616 28.2755 22.9616 26.1482V23.4815L16.0763 23.4815L16.0763 22.7408L26.0217 22.7408C28.2188 22.7408 29.9998 21.0162 29.9998 18.8889V13.1111C29.9998 10.9838 28.2188 9.25928 26.0217 9.25928L23.7266 9.25928V12.5185C23.7266 14.6459 21.9455 16.3704 19.7485 16.3704L12.4042 16.3704C10.5451 16.3704 9.03809 17.8296 9.03809 19.6296L9.03809 26.1482C9.03809 28.2755 10.8192 30 13.0162 30H18.9834ZM19.9015 25.2593C19.1409 25.2593 18.5244 25.8562 18.5244 26.5926C18.5244 27.329 19.1409 27.9259 19.9015 27.9259C20.662 27.9259 21.2785 27.329 21.2785 26.5926C21.2785 25.8562 20.662 25.2593 19.9015 25.2593Z"
+                fill="url(#paint1_linear_87_8204)" />
+              <defs>
+                <linearGradient id="paint0_linear_87_8204" x1="12.4809" y1="2" x2="12.4809" y2="22.7407"
+                  gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#327EBD" />
+                  <stop offset="1" stop-color="#1565A7" />
+                </linearGradient>
+                <linearGradient id="paint1_linear_87_8204" x1="19.519" y1="9.25928" x2="19.519" y2="30"
+                  gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#FFDA4B" />
+                  <stop offset="1" stop-color="#F9C600" />
+                </linearGradient>
+              </defs>
+            </svg></span> Python</div>
+
+
+
+
+
+
+        <div class="tech-pill"><span class="tech-pill-icon"><svg width="18px" height="18px" viewBox="0 0 32 32"
+              xmlns="http://www.w3.org/2000/svg">
+              <title>file_type_js</title>
+              <path
+                d="M18.774,19.7a3.727,3.727,0,0,0,3.376,2.078c1.418,0,2.324-.709,2.324-1.688,0-1.173-.931-1.589-2.491-2.272l-.856-.367c-2.469-1.052-4.11-2.37-4.11-5.156,0-2.567,1.956-4.52,5.012-4.52A5.058,5.058,0,0,1,26.9,10.52l-2.665,1.711a2.327,2.327,0,0,0-2.2-1.467,1.489,1.489,0,0,0-1.638,1.467c0,1.027.636,1.442,2.1,2.078l.856.366c2.908,1.247,4.549,2.518,4.549,5.376,0,3.081-2.42,4.769-5.671,4.769a6.575,6.575,0,0,1-6.236-3.5ZM6.686,20c.538.954,1.027,1.76,2.2,1.76,1.124,0,1.834-.44,1.834-2.15V7.975h3.422V19.658c0,3.543-2.078,5.156-5.11,5.156A5.312,5.312,0,0,1,3.9,21.688Z"
+                style="fill:#ffcc00" />
+            </svg></span> JavaScript</div>
+        <div class="tech-pill"><span class="tech-pill-icon">
+            <?xml version="1.0" encoding="utf-8"?>
+            <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+            <svg fill="#000000" width="18px" height="18px" viewBox="0 0 32 32" version="1.1"
+              xmlns="http://www.w3.org/2000/svg">
+              <title>linux</title>
+              <path
+                d="M14.923 8.080c-0.025 0.072-0.141 0.061-0.207 0.082-0.059 0.031-0.107 0.085-0.175 0.085-0.062 0-0.162-0.025-0.17-0.085-0.012-0.082 0.11-0.166 0.187-0.166 0.050-0.024 0.108-0.037 0.169-0.037 0.056 0 0.109 0.011 0.157 0.032l-0.003-0.001c0.022 0.009 0.038 0.030 0.038 0.055 0 0.003-0 0.005-0.001 0.008l0-0v0.025h0.004zM15.611 8.080v-0.027c-0.008-0.025 0.016-0.052 0.036-0.062 0.046-0.020 0.1-0.032 0.157-0.032 0.061 0 0.119 0.014 0.17 0.038l-0.002-0.001c0.079 0 0.2 0.084 0.187 0.169-0.007 0.061-0.106 0.082-0.169 0.082-0.069 0-0.115-0.054-0.176-0.085-0.065-0.023-0.182-0.010-0.204-0.081zM16.963 10.058c-0.532 0.337-1.161 0.574-1.835 0.666l-0.024 0.003c-0.606-0.035-1.157-0.248-1.607-0.588l0.007 0.005c-0.192-0.167-0.35-0.335-0.466-0.419-0.205-0.167-0.18-0.416-0.092-0.416 0.136 0.020 0.161 0.167 0.249 0.25 0.12 0.082 0.269 0.25 0.45 0.416 0.397 0.328 0.899 0.541 1.45 0.583l0.009 0.001c0.654-0.057 1.249-0.267 1.763-0.592l-0.016 0.010c0.244-0.169 0.556-0.417 0.81-0.584 0.195-0.17 0.186-0.334 0.349-0.334 0.16 0.020 0.043 0.167-0.184 0.415-0.246 0.188-0.527 0.381-0.818 0.56l-0.044 0.025zM8.017 21.397h0.012c0.069 0 0.137 0.007 0.203 0.019l-0.007-0.001c0.544 0.14 0.992 0.478 1.273 0.931l0.005 0.009 1.137 2.079 0.004 0.004c0.457 0.773 0.948 1.442 1.497 2.059l-0.011-0.013c0.49 0.52 0.82 1.196 0.909 1.946l0.002 0.016v0.008c-0.012 0.817-0.613 1.491-1.396 1.616l-0.009 0.001c-0.2 0.031-0.432 0.048-0.667 0.048-0.857 0-1.659-0.233-2.347-0.64l0.021 0.012c-1.053-0.441-2.275-0.714-3.555-0.752l-0.015-0c-0.372-0.025-0.696-0.215-0.901-0.496l-0.002-0.003c-0.054-0.174-0.085-0.374-0.085-0.582 0-0.35 0.088-0.679 0.244-0.966l-0.005 0.011v-0.005l0.003-0.004c0.041-0.188 0.065-0.405 0.065-0.627 0-0.274-0.036-0.539-0.104-0.791l0.005 0.021c-0.041-0.15-0.065-0.323-0.065-0.502 0-0.242 0.043-0.473 0.123-0.687l-0.004 0.014c0.2-0.417 0.495-0.5 0.862-0.666 0.438-0.133 0.819-0.334 1.151-0.593l-0.008 0.006h0.002v-0.003c0.32-0.335 0.556-0.751 0.835-1.047 0.195-0.249 0.492-0.41 0.827-0.42l0.002-0zM21.531 21.336c-0.001 0.017-0.001 0.038-0.001 0.059 0 0.743 0.449 1.381 1.091 1.658l0.012 0.005c0.048 0.003 0.104 0.005 0.16 0.005 0.831 0 1.575-0.371 2.075-0.957l0.003-0.004 0.264-0.012c0.053-0.008 0.114-0.012 0.176-0.012 0.341 0 0.652 0.132 0.883 0.348l-0.001-0.001 0.004 0.004c0.249 0.301 0.422 0.673 0.487 1.082l0.002 0.013c0.055 0.505 0.238 0.96 0.517 1.34l-0.005-0.008c0.416 0.356 0.705 0.85 0.793 1.411l0.002 0.013 0.004-0.009v0.022l-0.004-0.015c-0.019 0.327-0.231 0.495-0.622 0.744-1.184 0.497-2.201 1.158-3.077 1.968l0.007-0.006c-0.608 0.792-1.501 1.339-2.523 1.486l-0.021 0.002c-0.074 0.010-0.16 0.016-0.247 0.016-0.768 0-1.428-0.464-1.716-1.126l-0.005-0.012-0.006-0.004c-0.093-0.286-0.146-0.615-0.146-0.956 0-0.416 0.079-0.813 0.224-1.178l-0.008 0.022c0.234-0.668 0.435-1.466 0.568-2.288l0.011-0.083c0.016-0.812 0.104-1.593 0.258-2.35l-0.014 0.083c0.085-0.518 0.381-0.954 0.794-1.225l0.007-0.004 0.056-0.027zM18.8 10.142c0.6 2.147 1.339 4.002 2.247 5.757l-0.079-0.167c0.613 1.090 1.090 2.355 1.363 3.695l0.014 0.084c0.009-0 0.020-0 0.031-0 0.217 0 0.427 0.029 0.627 0.084l-0.017-0.004c0.11-0.395 0.173-0.848 0.173-1.316 0-1.426-0.587-2.716-1.533-3.639l-0.001-0.001c-0.275-0.25-0.29-0.419-0.154-0.419 0.971 0.91 1.689 2.078 2.045 3.394l0.012 0.051c0.089 0.329 0.14 0.707 0.14 1.097 0 0.351-0.041 0.693-0.119 1.020l0.006-0.030c0.074 0.038 0.16 0.067 0.251 0.083l0.006 0.001c1.29 0.667 1.766 1.172 1.537 1.921v-0.054c-0.075-0.004-0.15 0-0.225 0h-0.020c0.189-0.584-0.227-1.031-1.331-1.53-1.143-0.5-2.057-0.42-2.212 0.581-0.011 0.049-0.019 0.106-0.022 0.165l-0 0.003c-0.073 0.030-0.16 0.058-0.25 0.078l-0.011 0.002c-0.508 0.336-0.87 0.859-0.989 1.469l-0.002 0.014c-0.148 0.695-0.241 1.5-0.256 2.323l-0 0.012v0.004c-0.091 0.637-0.23 1.207-0.418 1.753l0.020-0.066c-0.983 0.804-2.251 1.29-3.634 1.29-1.13 0-2.184-0.325-3.073-0.887l0.024 0.014c-0.146-0.253-0.313-0.472-0.503-0.667l0.001 0.001c-0.097-0.16-0.211-0.297-0.342-0.415l-0.002-0.001c0.207-0 0.407-0.031 0.596-0.088l-0.015 0.004c0.18-0.085 0.318-0.232 0.391-0.412l0.002-0.005c0.018-0.093 0.029-0.199 0.029-0.308 0-0.445-0.175-0.848-0.461-1.146l0.001 0.001c-0.619-0.761-1.359-1.395-2.196-1.88l-0.038-0.020c-0.671-0.388-1.179-0.995-1.43-1.722l-0.007-0.022c-0.093-0.318-0.147-0.684-0.147-1.062 0-0.353 0.047-0.695 0.134-1.021l-0.006 0.027c0.377-1.314 0.921-2.461 1.62-3.496l-0.028 0.043c0.134-0.081 0.046 0.169-0.51 1.217-0.474 0.713-0.757 1.59-0.757 2.533 0 0.84 0.224 1.627 0.616 2.306l-0.012-0.022c0.052-1.309 0.345-2.537 0.834-3.659l-0.025 0.065c1.055-1.902 1.854-4.111 2.275-6.452l0.020-0.131c0.060 0.045 0.271 0.169 0.361 0.252 0.272 0.166 0.475 0.416 0.737 0.581 0.267 0.26 0.633 0.42 1.035 0.42 0.021 0 0.042-0 0.063-0.001l-0.003 0c0.049 0.004 0.094 0.008 0.137 0.008 0.459-0.009 0.887-0.132 1.259-0.342l-0.013 0.007c0.362-0.167 0.65-0.417 0.925-0.5h0.006c0.535-0.145 0.983-0.454 1.3-0.869l0.004-0.006zM15.301 7.465c0.003 0 0.006-0 0.009-0 0.569 0 1.094 0.187 1.517 0.503l-0.007-0.005c0.378 0.234 0.814 0.433 1.275 0.574l0.040 0.010h0.004c0.246 0.11 0.449 0.281 0.594 0.494l0.003 0.005v-0.164c0.046 0.092 0.074 0.201 0.074 0.316 0 0.098-0.020 0.191-0.055 0.276l0.002-0.005c-0.288 0.507-0.755 0.884-1.313 1.048l-0.016 0.004v0.002c-0.335 0.169-0.626 0.416-0.968 0.581-0.35 0.21-0.771 0.334-1.222 0.334-0.015 0-0.030-0-0.045-0l0.002 0c-0.022 0.001-0.048 0.002-0.074 0.002-0.174 0-0.342-0.031-0.496-0.089l0.010 0.003c-0.159-0.087-0.29-0.169-0.417-0.257l0.014 0.010c-0.227-0.199-0.477-0.39-0.739-0.565l-0.026-0.016v-0.006h-0.006c-0.375-0.199-0.67-0.504-0.852-0.876l-0.005-0.012c-0.027-0.067-0.042-0.145-0.042-0.226 0-0.218 0.112-0.41 0.281-0.522l0.002-0.001c0.28-0.169 0.475-0.339 0.604-0.42 0.13-0.092 0.179-0.127 0.22-0.164h0.002v-0.004c0.268-0.339 0.623-0.599 1.032-0.746l0.016-0.005c0.174-0.050 0.374-0.079 0.581-0.081h0.001zM13.589 5.333h0.045c0.188 0.004 0.361 0.067 0.501 0.17l-0.002-0.002c0.179 0.159 0.325 0.352 0.425 0.57l0.004 0.011c0.113 0.245 0.183 0.53 0.191 0.83l0 0.003v0.005c0.004 0.046 0.006 0.099 0.006 0.152 0 0.063-0.003 0.126-0.009 0.188l0.001-0.008v0.1c-0.037 0.009-0.070 0.022-0.104 0.030-0.191 0.079-0.352 0.163-0.505 0.258l0.014-0.008c0.008-0.055 0.012-0.118 0.012-0.182 0-0.053-0.003-0.106-0.009-0.158l0.001 0.006v-0.019c-0.018-0.154-0.054-0.295-0.107-0.428l0.004 0.011c-0.041-0.132-0.113-0.244-0.207-0.333l-0-0c-0.055-0.050-0.128-0.081-0.209-0.081-0.007 0-0.014 0-0.021 0.001l0.001-0h-0.026c-0.103 0.011-0.189 0.075-0.232 0.163l-0.001 0.002c-0.077 0.093-0.13 0.208-0.15 0.334l-0 0.004c-0.023 0.086-0.035 0.185-0.035 0.287 0 0.044 0.002 0.088 0.007 0.131l-0-0.005v0.019c0.016 0.154 0.052 0.296 0.104 0.428l-0.004-0.011c0.042 0.132 0.113 0.245 0.207 0.335l0 0c0.012 0.012 0.026 0.022 0.042 0.030l0.001 0c-0.083 0.053-0.155 0.109-0.221 0.171l0.001-0.001c-0.045 0.040-0.1 0.070-0.161 0.084l-0.003 0.001c-0.123-0.147-0.237-0.312-0.335-0.486l-0.008-0.016c-0.113-0.245-0.183-0.529-0.194-0.83l-0-0.004c-0.004-0.048-0.006-0.104-0.006-0.161 0-0.241 0.039-0.473 0.11-0.69l-0.004 0.016c0.074-0.258 0.195-0.481 0.356-0.671l-0.002 0.003c0.127-0.15 0.313-0.245 0.522-0.25h0.001zM17.291 5.259h0.016c0.001 0 0.002 0 0.004 0 0.275 0 0.527 0.093 0.729 0.249l-0.003-0.002c0.229 0.177 0.413 0.4 0.542 0.655l0.005 0.011c0.121 0.266 0.196 0.575 0.207 0.901l0 0.004c0-0.025 0.007-0.050 0.007-0.075v0.131l-0.005-0.026-0.005-0.030c-0.003 0.32-0.071 0.622-0.193 0.897l0.006-0.014c-0.062 0.163-0.152 0.303-0.266 0.419l0-0c-0.030-0.018-0.067-0.035-0.104-0.050l-0.006-0.002c-0.135-0.042-0.253-0.099-0.36-0.169l0.005 0.003c-0.077-0.032-0.169-0.060-0.264-0.081l-0.011-0.002c0.081-0.076 0.156-0.157 0.225-0.243l0.004-0.005c0.063-0.148 0.102-0.319 0.11-0.499l0-0.003v-0.025c0-0.008 0-0.016 0-0.025 0-0.17-0.028-0.333-0.080-0.485l0.003 0.011c-0.063-0.159-0.14-0.296-0.232-0.421l0.004 0.005c-0.087-0.088-0.202-0.148-0.331-0.165l-0.003-0h-0.020c-0.001 0-0.003-0-0.004-0-0.132 0-0.25 0.065-0.322 0.164l-0.001 0.001c-0.116 0.113-0.204 0.253-0.254 0.41l-0.002 0.007c-0.063 0.147-0.104 0.318-0.112 0.496l-0 0.003v0.024c0.002 0.12 0.011 0.236 0.027 0.349l-0.002-0.015c-0.241-0.084-0.547-0.169-0.759-0.252-0.012-0.073-0.020-0.159-0.022-0.247l-0-0.003v-0.025c-0.001-0.020-0.001-0.043-0.001-0.066 0-0.324 0.069-0.631 0.194-0.908l-0.006 0.014c0.106-0.279 0.293-0.508 0.532-0.663l0.005-0.003c0.204-0.156 0.462-0.25 0.742-0.25h0zM16.63 1.004c-0.194 0-0.394 0.010-0.6 0.026-5.281 0.416-3.88 6.007-3.961 7.87-0.050 1.426-0.534 2.729-1.325 3.792l0.013-0.018c-1.407 1.602-2.555 3.474-3.351 5.523l-0.043 0.127c-0.258 0.685-0.408 1.476-0.408 2.302 0 0.285 0.018 0.566 0.052 0.841l-0.003-0.033c-0.056 0.046-0.103 0.102-0.136 0.166l-0.001 0.003c-0.325 0.335-0.562 0.75-0.829 1.048-0.283 0.217-0.615 0.388-0.975 0.494l-0.021 0.005c-0.464 0.139-0.842 0.442-1.075 0.841l-0.005 0.009c-0.104 0.212-0.165 0.461-0.165 0.725 0 0.010 0 0.019 0 0.029l-0-0.001c0.002 0.238 0.026 0.469 0.073 0.693l-0.004-0.023c0.056 0.219 0.088 0.471 0.088 0.73 0 0.17-0.014 0.337-0.041 0.5l0.002-0.018c-0.167 0.313-0.264 0.685-0.264 1.080 0 0.278 0.048 0.544 0.137 0.791l-0.005-0.016c0.273 0.388 0.686 0.662 1.164 0.749l0.011 0.002c1.274 0.107 2.451 0.373 3.561 0.78l-0.094-0.030c0.698 0.415 1.539 0.66 2.436 0.66 0.294 0 0.582-0.026 0.862-0.077l-0.029 0.004c0.667-0.151 1.211-0.586 1.504-1.169l0.006-0.013c0.734-0.004 1.537-0.336 2.824-0.417 0.873-0.072 1.967 0.334 3.22 0.25 0.037 0.159 0.086 0.298 0.148 0.429l-0.006-0.013 0.004 0.004c0.384 0.804 1.19 1.35 2.124 1.35 0.081 0 0.161-0.004 0.24-0.012l-0.010 0.001c1.151-0.17 2.139-0.768 2.813-1.623l0.007-0.009c0.843-0.768 1.827-1.401 2.905-1.853l0.067-0.025c0.432-0.191 0.742-0.585 0.81-1.059l0.001-0.007c-0.059-0.694-0.392-1.299-0.888-1.716l-0.004-0.003v-0.121l-0.004-0.004c-0.214-0.33-0.364-0.722-0.421-1.142l-0.002-0.015c-0.053-0.513-0.278-0.966-0.615-1.307l0 0h-0.004c-0.074-0.067-0.154-0.084-0.235-0.169-0.066-0.047-0.148-0.076-0.237-0.080l-0.001-0c0.195-0.602 0.308-1.294 0.308-2.013 0-0.94-0.193-1.835-0.541-2.647l0.017 0.044c-0.704-1.672-1.619-3.111-2.732-4.369l0.014 0.017c-1.105-1.082-1.828-2.551-1.948-4.187l-0.001-0.021c0.033-2.689 0.295-7.664-4.429-7.671z">
+              </path>
+            </svg>
+          </span> Linux</div>
+        <div class="tech-pill"><span class="tech-pill-icon"><svg width="18px" height="18px" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" fill="none" width="20" height="20" />
+              <g>
+                <path
+                  d="M16 13c-1.3 0-2.4.8-2.8 2H9c0-.7-.2-1.3-.5-1.8l7.1-7.3c.3 0 .6.1.9.1C17.9 6 19 4.9 19 3.5S17.9 1 16.5 1 14 2.1 14 3.5c0 .3.1.7.2 1l-7 7.2c-.6-.5-1.4-.7-2.2-.7V6.8C6.2 6.4 7 5.3 7 4c0-1.7-1.3-3-3-3S1 2.3 1 4c0 1.3.8 2.4 2 2.8v4.7c-1.2.7-2 2-2 3.4 0 2.2 1.8 4 4 4 1.5 0 2.8-.8 3.4-2h4.7c.4 1.1 1.5 2 2.8 2 1.6 0 3-1.3 3-3C19 14.3 17.6 13 16 13z" />
+              </g>
+            </svg></span> REST API</div>
+        <div class="tech-pill"><span class="tech-pill-icon"><svg fill="#000000" width="18px" height="18px"
+              viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0 15c0 7.033 4.836 12.945 11.375 14.563.3.077.635-.19.625-.5V22.5c0-.333.197-.652.563-.844.37-.185.28-.856-.125-.937-1.9-.38-3.52-1.143-4.657-2.157C6.646 17.547 6 16.314 6 15c0-.915.327-1.793.906-2.594.06-.082.092-.18.094-.28V7.343l3.97 2.125c.122.066.273.077.405.03C12.488 9.168 13.698 9 15 9s2.512.168 3.625.5c.132.047.283.035.406-.03L23 7.343v4.78c.002.1.035.2.094.282.58.8.906 1.68.906 2.594 0 1.315-.645 2.548-1.78 3.563-1.138 1.014-2.76 1.776-4.657 2.156-.406.08-.495.75-.125.936.365.192.562.51.562.844v6.563c-.01.31.326.577.625.5C25.165 27.945 30 22.032 30 15c0-8.278-6.722-15-15-15C6.722 0 0 6.722 0 15zM15 1c7.738 0 14 6.262 14 14 0 6.33-4.24 11.547-10 13.28V22.5c0-.4-.154-.756-.375-1.063 1.663-.457 3.182-1.175 4.28-2.156C24.206 18.124 25 16.64 25 15c0-1.083-.394-2.074-1-2.97V6.5c.003-.35-.446-.613-.75-.437L18.656 8.53C17.516 8.22 16.296 8 15 8c-1.295 0-2.517.218-3.656.53L6.75 6.064c-.304-.176-.753.087-.75.437v5.53c-.606.896-1 1.887-1 2.97 0 1.64.795 3.123 2.094 4.28 1.1.982 2.62 1.7 4.28 2.158-.22.306-.374.66-.374 1.062v1.688c-1.09.406-1.807.493-2.25.406-.478-.094-.736-.34-1.03-.75-.592-.823-1.173-2.34-3.095-2.836-.654-.175-.875.8-.25.97 1.508.39 1.805 1.448 2.53 2.46.364.505.886.973 1.658 1.125.643.126 1.422.03 2.437-.313v3.03C5.242 26.548 1 21.33 1 15 1 7.262 7.262 1 15 1z" />
+            </svg></span> Git / GitHub</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-eyebrow">Portfolio</div>
+        <h2 class="section-title">Featured <span>Projects</span></h2>
+        <p class="section-sub">Real apps. Real code.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Featured wide -->
+        <div class="project-card wide reveal d1">
+          <div class="project-thumb flutter"><svg width="80px" height="80px" viewBox="0 0 1024 1024" fill="#ff4a18"
+              class="icon" version="1.1">
+              <path
+                d="M526.294 824.994c-0.796 0-1.61-0.124-2.39-0.344a8.02 8.02 0 0 1-5.484-6.216c-5.374-29.624-20.59-79.834-38.526-88.428a8.03 8.03 0 0 1-3.75-10.686 8.02 8.02 0 0 1 10.688-3.75c23.996 11.532 38.212 59.68 44.18 85.02 93.754-100.924 51.37-164.976 50.916-165.632a7.982 7.982 0 0 1 2.032-11.124c3.578-2.5 8.624-1.624 11.124 2.032 2.234 3.218 53.384 80.366-63.132 196.788a7.99 7.99 0 0 1-5.658 2.34zM348.038 594.618a8.03 8.03 0 0 1-6.876-3.906c-11.67-19.652-67.35-33.588-87.816-37.306a8.016 8.016 0 0 1-6.218-5.5 7.994 7.994 0 0 1 1.984-8.03c116.486-116.508 193.646-65.422 196.85-63.172a7.99 7.99 0 0 1 2.032 11.124c-2.5 3.64-7.466 4.516-11.092 2.062-2.75-1.89-65.586-42.228-165.728 50.924 24.496 5.75 70.38 19.214 83.738 41.712a7.988 7.988 0 0 1-2.782 10.966 8.12 8.12 0 0 1-4.092 1.126zM189.338 893.64c-4.03 0-6.56-1.688-7.982-3.094-18.076-18.09 78.178-123.42 79.194-124.452 12.092-12.06 33.166-12.06 45.26 0.032a31.702 31.702 0 0 1 9.358 22.59c0 8.562-3.328 16.592-9.374 22.624-0.83 0.844-92.926 82.3-116.456 82.3z m93.832-120.89a15.924 15.924 0 0 0-11.31 4.656c-11.56 11.56-60.96 72.428-74.302 96.926 24.496-13.344 85.364-62.742 96.924-74.304a15.796 15.796 0 0 0 4.688-11.31 15.78 15.78 0 0 0-4.672-11.28 15.892 15.892 0 0 0-11.328-4.688z"
+                fill="" />
+              <path
+                d="M158.014 943.478c-9.42 0-16.792-2.594-21.902-7.686-15.358-15.374-7.89-49.932 22.824-105.644 22.966-41.68 53.026-83.3 67.696-97.956 15.092-15.124 35.166-23.434 56.524-23.434s41.448 8.31 56.554 23.434c31.168 31.184 31.2 81.928 0.046 113.112-24.512 24.496-132.014 98.174-181.742 98.174z m125.14-218.72c-17.092 0-33.136 6.654-45.212 18.746-13.966 13.938-43.416 55.182-64.992 94.364-29.418 53.336-32.134 79.99-25.528 86.614 2 2 5.562 3 10.592 3 41.918 0 144.78-67.866 170.432-93.488 24.918-24.934 24.886-65.552-0.046-90.488-12.094-12.094-28.154-18.748-45.246-18.748zM446.476 767.72a7.996 7.996 0 0 1-5.654-13.654l441.16-441.17c38.776-38.776 50.682-81.272 54.322-103.142 5.638-33.84-0.75-58.226-9.078-66.554-7.874-7.874-34.636-12.092-70.552-4.906-38.932 7.78-75.068 26.06-99.142 50.134L316.37 629.614l-11.31-11.31L746.22 177.118c26.246-26.262 65.368-46.12 107.33-54.508 30.496-6.092 68.88-6.858 84.99 9.28 25.246 25.246 27.278 119.796-45.246 192.318l-441.16 441.17a7.98 7.98 0 0 1-5.658 2.342z"
+                fill="" />
+              <path
+                d="M797.12 190.772a7.992 7.992 0 0 1-6.86-3.876 8.024 8.024 0 0 1 2.734-10.982c56.398-33.95 106.83-37.542 122.922-21.404a8 8 0 0 1-11.31 11.312c-7.078-7.062-46.792-10.25-103.364 23.808a8.08 8.08 0 0 1-4.122 1.142zM378.58 699.822a8 8 0 0 1-5.656-13.654l135.686-135.67a7.996 7.996 0 1 1 11.31 11.31l-135.686 135.672a7.97 7.97 0 0 1-5.654 2.342zM355.958 677.202a7.972 7.972 0 0 1-5.654-2.344l-45.244-45.244a7.996 7.996 0 1 1 11.31-11.31l45.244 45.244a7.996 7.996 0 0 1-5.656 13.654zM446.476 767.72a7.968 7.968 0 0 1-5.654-2.344l-45.276-45.276a7.996 7.996 0 1 1 11.31-11.31l45.276 45.276a7.996 7.996 0 0 1-5.656 13.654zM717.942 408.478c-14.966 0-29.012-5.828-39.588-16.404-10.576-10.578-16.404-24.638-16.404-39.59 0-14.966 5.828-29.028 16.404-39.604 21.152-21.168 58.04-21.168 79.194-0.016 10.576 10.576 16.402 24.636 16.402 39.588 0 14.966-5.826 29.028-16.402 39.606-10.58 10.576-24.656 16.42-39.606 16.42z m0.016-96.02c-10.686 0-20.73 4.172-28.292 11.732a39.74 39.74 0 0 0-11.716 28.292 39.728 39.728 0 0 0 11.716 28.278c15.092 15.092 41.448 15.108 56.57-0.016a39.74 39.74 0 0 0 11.718-28.294 39.738 39.738 0 0 0-11.718-28.278 39.73 39.73 0 0 0-28.278-11.714zM604.832 521.588c-14.968 0-29.028-5.826-39.59-16.404-10.576-10.576-16.404-24.636-16.404-39.588 0-14.966 5.828-29.028 16.404-39.588 21.124-21.122 58.024-21.154 79.178 0 10.576 10.578 16.404 24.638 16.404 39.588s-5.828 29.012-16.404 39.588c-10.576 10.578-24.638 16.404-39.588 16.404z m0-95.988c-10.688 0-20.732 4.156-28.278 11.718-7.562 7.544-11.718 17.59-11.718 28.278a39.734 39.734 0 0 0 11.718 28.278c15.074 15.108 41.416 15.138 56.554 0a39.74 39.74 0 0 0 11.716-28.278 39.74 39.74 0 0 0-11.716-28.278 39.728 39.728 0 0 0-28.276-11.718zM904.262 799.966c-4.422 0-8.078-3.562-8.078-8 0-4.404 3.5-7.998 7.906-7.998h0.172a8.014 8.014 0 0 1 7.998 7.998c0 4.438-3.592 8-7.998 8zM280.31 16.06c-4.42 0-8.076-3.578-8.076-8 0-4.42 3.5-7.998 7.904-7.998h0.172c4.406 0 8 3.578 8 7.998 0 4.422-3.594 8-8 8zM632.266 48.056c-4.422 0-8.078-3.578-8.078-8 0-4.42 3.5-7.998 7.906-7.998h0.172a8.004 8.004 0 0 1 7.998 7.998c0 4.422-3.592 8-7.998 8zM40.342 240.032c-4.422 0-8.076-3.578-8.076-8 0-4.42 3.5-7.998 7.904-7.998h0.172c4.406 0 8 3.578 8 7.998 0 4.422-3.594 8-8 8zM168.31 671.982c-4.422 0-8.078-3.594-8.078-7.998 0-4.438 3.5-8 7.906-8h0.172a7.994 7.994 0 0 1 7.998 8 8.014 8.014 0 0 1-7.998 7.998zM567.46 1007.94c-4.422 0-8.078-3.594-8.078-8 0-4.436 3.5-7.998 7.906-7.998h0.172c4.406 0 8 3.562 8 7.998 0 4.406-3.592 8-8 8zM952.222 1023.938c-4.42 0-8.076-3.562-8.076-8 0-4.406 3.5-7.998 7.904-7.998h0.172c4.406 0 8 3.592 8 7.998 0 4.438-3.594 8-8 8zM776.278 591.992c-4.422 0-8.076-3.592-8.076-7.998 0-4.438 3.498-7.998 7.904-7.998h0.172c4.406 0 8 3.56 8 7.998a8.014 8.014 0 0 1-8 7.998zM968.238 527.994c-4.422 0-8.078-3.578-8.078-8 0-4.42 3.5-7.998 7.906-7.998h0.172a8.004 8.004 0 0 1 7.998 7.998c0 4.422-3.594 8-7.998 8zM872.25 751.942c-4.422 0-8.078-3.562-8.078-8 0-4.404 3.5-7.998 7.906-7.998h0.172a8.014 8.014 0 0 1 7.998 7.998c0 4.436-3.592 8-7.998 8z"
+                fill="" />
+              <path
+                d="M911.76 831.992c-44.104-0.032-79.99-35.932-80.006-80.02 0.016-44.12 35.902-79.99 79.99-79.99 44.104 0 79.99 35.872 79.99 79.99 0 44.088-35.87 79.988-79.974 80.02z m-0.016-144.012c-35.276 0-63.974 28.714-63.99 63.992 0.016 35.278 28.73 63.992 64.006 64.024 35.278-0.032 63.976-28.746 63.976-64.024 0-35.308-28.698-63.992-63.992-63.992z"
+                fill="" />
+              <path
+                d="M935.79 751.972c-13.234 0-24.014-10.782-24.03-23.996 0-13.25 10.764-23.998 23.982-23.998 13.232 0 23.996 10.78 23.996 23.998a23.774 23.774 0 0 1-6.968 16.934 23.76 23.76 0 0 1-16.98 7.062z m-0.064-31.996a7.972 7.972 0 0 0-7.968 7.968c0.016 4.498 3.516 8.03 8 8.03h0.032c2.14 0 4.138-0.844 5.638-2.344s2.312-3.5 2.312-5.624a8.026 8.026 0 0 0-8.014-8.03zM711.8 927.98a8.004 8.004 0 0 1-7.998-7.998l-0.032-64.024a8.004 8.004 0 0 1 7.998-7.998c4.422 0 8 3.592 8 7.998l0.032 64.024a8.006 8.006 0 0 1-8 7.998z"
+                fill="" />
+              <path
+                d="M727.77 895.954h-31.996c-4.422 0-8-3.594-8-7.998 0-4.438 3.578-8 8-8h31.996a7.984 7.984 0 0 1 7.998 8 8.004 8.004 0 0 1-7.998 7.998zM391.812 991.942c-4.422 0-8-3.594-8-8v-63.99c0-4.438 3.578-8 8-8s7.998 3.562 7.998 8v63.99c0 4.406-3.576 8-7.998 8z"
+                fill="" />
+              <path
+                d="M407.794 959.946h-31.98c-4.422 0-8-3.594-8-8a7.984 7.984 0 0 1 8-7.998h31.98a7.982 7.982 0 0 1 7.998 7.998c0 4.406-3.576 8-7.998 8zM197.4 198.192c-4.422 0-8-3.578-8-8l0.016-63.992a7.994 7.994 0 0 1 8-7.998 7.994 7.994 0 0 1 7.998 7.998l-0.016 63.992c0 4.424-3.578 8-7.998 8z"
+                fill="" />
+              <path
+                d="M213.398 166.198H181.402c-4.422 0-8-3.578-8-8a7.994 7.994 0 0 1 8-7.998h31.996a7.994 7.994 0 0 1 7.998 7.998c0 4.422-3.578 8-7.998 8zM519.794 144.042a7.994 7.994 0 0 1-7.998-7.998l0.016-63.992c0-4.422 3.578-8 7.998-8 4.422 0 8 3.578 8 8l-0.016 63.992a7.994 7.994 0 0 1-8 7.998z"
+                fill="" />
+              <path
+                d="M535.792 112.046h-31.98a7.994 7.994 0 0 1-7.998-7.998c0-4.422 3.578-8 7.998-8h31.98c4.422 0 8 3.578 8 8a7.994 7.994 0 0 1-8 7.998zM87.836 511.996a7.994 7.994 0 0 1-7.998-8l0.032-63.992c0-4.42 3.576-8 7.998-8 4.422 0 8 3.578 8 8l-0.032 63.992c0 4.422-3.578 8-8 8z"
+                fill="" />
+              <path
+                d="M103.866 480H71.87c-4.422 0-7.998-3.578-7.998-8s3.576-8 7.998-8h31.996c4.422 0 7.998 3.578 7.998 8s-3.576 8-7.998 8zM359.816 336.018c-14.936 0-28.996-5.828-39.588-16.404-10.578-10.578-16.404-24.638-16.42-39.588 0-14.952 5.826-29.012 16.404-39.572 21.184-21.17 58.024-21.186 79.176-0.016 10.594 10.576 16.42 24.636 16.42 39.588s-5.826 29.012-16.42 39.588c-10.56 10.578-24.62 16.404-39.572 16.404z m0-95.986c-10.686 0-20.732 4.17-28.292 11.732a39.668 39.668 0 0 0-11.716 28.262 39.814 39.814 0 0 0 11.732 28.278c15.124 15.124 41.448 15.124 56.54 0 7.562-7.56 11.732-17.606 11.732-28.278 0-10.67-4.17-20.716-11.732-28.278-7.562-7.562-17.594-11.716-28.264-11.716z"
+                fill="" />
+              <path
+                d="M318.478 334.612c-3.704 0-6.984-1.11-9.562-3.686a8 8 0 0 1 10.188-12.25c5.124-0.296 23.308-9.952 46.354-32.98 23.058-23.06 32.712-41.26 33.01-46.4-2.138-3.11-1.842-7.422 0.938-10.186a8 8 0 0 1 11.312 0c16.154 16.154-25.452 59.398-33.95 67.898-7.142 7.14-38.778 37.604-58.29 37.604z"
+                fill="" />
+              <path
+                d="M876.328 315.224a7.976 7.976 0 0 1-5.656-2.344l-113.124-113.126a8 8 0 0 1 11.31-11.312l113.124 113.126a7.996 7.996 0 0 1 0 11.31 7.954 7.954 0 0 1-5.654 2.346z"
+                fill="" />
+              <path
+                d="M408.03 757.91c-10.204 0-27.778-7.844-57.726-37.808-44.292-44.276-40.278-61.524-33.934-67.868a7.996 7.996 0 0 1 12.404 9.938c-0.124 1.906 0.5 14.28 32.84 46.62 32.292 32.306 44.478 32.744 46.634 32.87a8.006 8.006 0 0 1 9.936 1.094 8 8 0 0 1 0 11.312c-2.048 2.03-5.25 3.842-10.154 3.842z"
+                fill="" />
+              <path
+                d="M616.142 462.284a7.976 7.976 0 0 1-5.656-2.344c-3.092-3.092-8.374-3.092-11.466 0a7.996 7.996 0 0 1-11.31 0c-3.124-3.108-3.124-8.17 0-11.31 9.092-9.124 24.996-9.124 34.088 0 3.124 3.14 3.124 8.202 0 11.31a7.976 7.976 0 0 1-5.656 2.344z"
+                fill="" />
+              <path
+                d="M729.268 349.158a7.98 7.98 0 0 1-5.654-2.342 8.128 8.128 0 0 0-11.468 0 8 8 0 0 1-11.31-11.312c9.404-9.406 24.686-9.406 34.09 0a8 8 0 0 1-5.658 13.654z"
+                fill="" />
+            </svg></div>
+          <div class="project-body">
+            <div class="project-type">Flutter · GetX · Featured</div>
+            <div class="project-title">Privacy-Guard</div>
+            <div class="project-desc">A production-ready Flutter app with GetX state management, AES-encrypted local
+              storage, biometric authentication, anti-screenshot protection, and zero-data-collection architecture.
+              Security baked in from line one — not added at the end.</div>
+            <div class="project-tags">
+              <span class="tag">Flutter</span><span class="tag">Dart</span>
+              <span class="tag">GetX</span><span class="tag">AES Encryption</span>
+              <span class="tag">Biometric Auth</span><span class="tag">SQLite</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Android Security -->
+        <div class="project-card reveal d2">
+          <div class="project-thumb android"><svg fill="#000000" height="80px" width="80px" version="1.1" id="Layer_1"
+              xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+              <g>
+                <path
+                  d="M256,0C114.6,0,0,114.6,0,256s114.6,256,256,256s256-114.6,256-256S397.4,0,256,0z M415.8,415.7 c-20.8,20.8-44.9,37.1-71.8,48.4c-27.8,11.8-57.4,17.7-88,17.7c-30.5,0-60.1-6-88-17.7c-26.9-11.4-51.1-27.7-71.8-48.4 c-20.8-20.8-37.1-44.9-48.4-71.8C36,316.1,30,286.5,30,256s6-60.1,17.7-88c11.4-26.9,27.7-51.1,48.4-71.8 c20.9-20.8,45-37.1,71.9-48.5C195.9,36,225.5,30,256,30s60.1,6,88,17.7c26.9,11.4,51.1,27.7,71.8,48.4 c20.8,20.8,37.1,44.9,48.4,71.8c11.8,27.8,17.7,57.4,17.7,88c0,30.5-6,60.1-17.7,88C452.8,370.8,436.5,395,415.8,415.7z" />
+                <path
+                  d="M294.2,150.3l2.8-4.2l2.8-4.1l6.2-9.3c0.8-1.1,0.5-2.7-0.7-3.4c-1.1-0.8-2.7-0.5-3.4,0.7l-6.6,9.9l-2.8,4.2l-2.8,4.2 c-9-3.5-18.9-5.4-29.5-5.4c-10.5,0-20.5,1.9-29.5,5.4l-2.8-4.2l-2.8-4.2l-6.6-9.9c-0.8-1.1-2.3-1.4-3.4-0.7 c-1.1,0.8-1.4,2.3-0.7,3.4l6.2,9.3l2.8,4.1l2.8,4.2c-21,9.8-35.3,28.3-35.3,49.6h138.7C329.5,178.6,315.3,160.1,294.2,150.3z M230.4,180c-4.1,0-7.4-3.3-7.4-7.4s3.3-7.4,7.4-7.4c4.1,0,7.4,3.3,7.4,7.4C237.8,176.7,234.5,180,230.4,180z M289.8,180 c-4.1,0-7.4-3.3-7.4-7.4s3.3-7.4,7.4-7.4c4.1,0,7.4,3.3,7.4,7.4C297.3,176.7,294,180,289.8,180z" />
+                <path
+                  d="M191.8,209.8h-1.1v12.3v10.1v86.6c0,8.7,7,15.7,15.7,15.7h11.3c-0.4,1.3-0.6,2.7-0.6,4.1v0.8v5V370 c0,8.2,6.7,14.9,14.9,14.9s14.9-6.7,14.9-14.9v-25.6v-5v-0.8c0-1.4-0.2-2.8-0.6-4.1h27.6c-0.4,1.3-0.6,2.7-0.6,4.1v0.8v5V370 c0,8.2,6.7,14.9,14.9,14.9c8.2,0,14.9-6.7,14.9-14.9v-25.6v-5v-0.8c0-1.4-0.2-2.8-0.6-4.1h11.3c8.7,0,15.7-7,15.7-15.7v-86.6v-10.1 v-12.4h-1.1H191.8V209.8z" />
+                <path
+                  d="M166,209.8c-8.2,0-14.9,6.7-14.9,14.9v63.6c0,8.2,6.7,14.9,14.9,14.9c8.2,0,14.9-6.7,14.9-14.9v-63.6 C180.8,216.4,174.2,209.8,166,209.8z" />
+                <path
+                  d="M354.3,209.8c-8.2,0-14.9,6.7-14.9,14.9v63.6c0,8.2,6.7,14.9,14.9,14.9c8.2,0,14.9-6.7,14.9-14.9v-63.6 C369.1,216.4,362.5,209.8,354.3,209.8z" />
+              </g>
+            </svg></div>
+          <div class="project-body">
+            <div class="project-type">Android · Kotlin · Security</div>
+            <div class="project-title">Android Security Monitor</div>
+            <div class="project-desc">Native Kotlin app built as a background service layer. Detects suspicious
+              processes, insecure network connections, and privacy leaks in real time. Powers other Flutter apps via
+              packages.</div>
+            <div class="project-tags">
+              <span class="tag">Kotlin</span><span class="tag">Android SDK</span>
+              <span class="tag">Background Service</span><span class="tag">Jetpack</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Chat App -->
+        <div class="project-card reveal d3">
+          <div class="project-thumb chat"><svg width="80px" height="80px" viewBox="0 0 50 50"
+              id="Message_And_Communication_Icons" version="1.1" xml:space="preserve"
+              xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g>
+                <g>
+                  <g>
+                    <path
+                      d="M35.8,12.1c2.1,2.7,3.3,6.1,3.3,9.8C39.1,30.8,31.9,38,23,38c-2.5,0-4.8-0.6-6.9-1.6l-0.7,0.7v6     l3.7-3.7c2.1,1,4.4,1.6,6.9,1.6c8.9,0,16.1-7.2,16.1-16.1C42.1,19.7,39.6,15.1,35.8,12.1z"
+                      style="fill:#4DE0F9;" />
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path
+                      d="M13.8,43.6v-7.3c-3.5-3.2-5.5-7.7-5.5-12.4c0-9.2,7.5-16.7,16.7-16.7s16.7,7.5,16.7,16.7     S34.2,40.6,25,40.6c-2.3,0-4.6-0.5-6.8-1.5L13.8,43.6z M25,8.4c-8.5,0-15.5,6.9-15.5,15.5c0,4.4,1.9,8.7,5.3,11.6l0.2,0.2v4.9     l3-3l0.4,0.2c2.1,1,4.3,1.5,6.6,1.5c8.5,0,15.5-6.9,15.5-15.5S33.5,8.4,25,8.4z"
+                      style="fill:#0D5FC3;" />
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path d="M15.4,15.2l-0.9-0.8c0.4-0.5,0.9-0.9,1.4-1.3l0.8,0.9C16.3,14.4,15.8,14.8,15.4,15.2z"
+                      style="fill:#4DE0F9;" />
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path d="M12.3,21.2L11.1,21c0.4-1.9,1.2-3.6,2.3-5.2l1,0.7C13.4,17.9,12.7,19.5,12.3,21.2z"
+                      style="fill:#4DE0F9;" />
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path
+                      d="M19,23.5c-0.1,0-0.1,0-0.2,0c-0.1,0.7-0.6,1.2-1.3,1.3c0,0.1,0,0.1,0,0.2c0,0.8,0.7,1.5,1.5,1.5     s1.5-0.7,1.5-1.5S19.8,23.5,19,23.5z"
+                      style="fill:#4DE0F9;" />
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path
+                      d="M26,23.5c-0.1,0-0.1,0-0.2,0c-0.1,0.7-0.6,1.2-1.3,1.3c0,0.1,0,0.1,0,0.2c0,0.8,0.7,1.5,1.5,1.5     s1.5-0.7,1.5-1.5S26.8,23.5,26,23.5z"
+                      style="fill:#4DE0F9;" />
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path
+                      d="M33,23.5c-0.1,0-0.1,0-0.2,0c-0.1,0.7-0.6,1.2-1.3,1.3c0,0.1,0,0.1,0,0.2c0,0.8,0.7,1.5,1.5,1.5     s1.5-0.7,1.5-1.5S33.8,23.5,33,23.5z"
+                      style="fill:#4DE0F9;" />
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path
+                      d="M18.3,26.3c-1.2,0-2.1-0.9-2.1-2.1s0.9-2.1,2.1-2.1s2.1,0.9,2.1,2.1S19.4,26.3,18.3,26.3z      M18.3,23.3c-0.5,0-0.9,0.4-0.9,0.9s0.4,0.9,0.9,0.9s0.9-0.4,0.9-0.9S18.8,23.3,18.3,23.3z"
+                      style="fill:#0D5FC3;" />
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path
+                      d="M25.2,26.3c-1.2,0-2.1-0.9-2.1-2.1s0.9-2.1,2.1-2.1s2.1,0.9,2.1,2.1S26.4,26.3,25.2,26.3z      M25.2,23.3c-0.5,0-0.9,0.4-0.9,0.9s0.4,0.9,0.9,0.9s0.9-0.4,0.9-0.9S25.7,23.3,25.2,23.3z"
+                      style="fill:#0D5FC3;" />
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path
+                      d="M32.2,26.3c-1.2,0-2.1-0.9-2.1-2.1s0.9-2.1,2.1-2.1s2.1,0.9,2.1,2.1S33.3,26.3,32.2,26.3z      M32.2,23.3c-0.5,0-0.9,0.4-0.9,0.9s0.4,0.9,0.9,0.9s0.9-0.4,0.9-0.9S32.7,23.3,32.2,23.3z"
+                      style="fill:#0D5FC3;" />
+                  </g>
+                </g>
+              </g>
+            </svg></div>
+          <div class="project-body">
+            <div class="project-type">Flutter · E2E Encrypted</div>
+            <div class="project-title">SecureChat Messenger</div>
+            <div class="project-desc">End-to-end encrypted real-time chat app. Media sharing, push notifications, group
+              chats — all with AES encryption and zero plaintext storage on-device.</div>
+            <div class="project-tags">
+              <span class="tag">Flutter</span><span class="tag">GetX</span>
+              <span class="tag">WebSockets</span><span class="tag">AES</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- JS Security -->
+        <div class="project-card reveal d2">
+          <div class="project-thumb security"><svg width="80px" height="80px" viewBox="0 0 16 16" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M8 16L4.35009 13.3929C2.24773 11.8912 1 9.46667 1 6.88306V3L8 0L15 3V6.88306C15 9.46667 13.7523 11.8912 11.6499 13.3929L8 16ZM12.2071 5.70711L10.7929 4.29289L7 8.08579L5.20711 6.29289L3.79289 7.70711L7 10.9142L12.2071 5.70711Z"
+                fill="#ff5525" />
+            </svg></div>
+          <div class="project-body">
+            <div class="project-type">JavaScript · Web Security</div>
+            <div class="project-title">JS Security Toolkit</div>
+            <div class="project-desc">Browser hardening and tracker-blocking utility scripts. Built for web apps that
+              need serious privacy — blocks fingerprinting, removes tracking params, and audits security posture.</div>
+            <div class="project-tags">
+              <span class="tag">JavaScript</span><span class="tag">Browser API</span>
+              <span class="tag">Anti-Tracking</span><span class="tag">Linux</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Threat Dashboard -->
+        <div class="project-card reveal d3">
+          <div class="project-thumb web"><svg width="180px" height="180px" viewBox="0 0 48 48">
+              <defs>
+                <style>
+                  .a {
+                    fill: none;
+                    stroke: #ffffff;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                  }
+                </style>
+              </defs>
+              <circle class="a" cx="35.8169" cy="27.9524" r="7.6831" />
+              <path class="a"
+                d="M37.4405,20.45a8.7226,8.7226,0,0,0-16.68-2.882,6.6614,6.6614,0,0,0-2.9988-.7342,6.7332,6.7332,0,0,0-6.5858,5.3416,6.73,6.73,0,0,0,.0577,13.4606H35.8169" />
+              <polyline class="a" points="42.109 23.567 35.18 30.495 32.247 27.561" />
+            </svg></div>
+          <div class="project-body">
+            <div class="project-type">Flutter · Monitoring App</div>
+            <div class="project-title">Threat Intelligence Dashboard</div>
+            <div class="project-desc">Real-time cybersecurity monitoring dashboard as a Flutter app. Visualizes mobile
+              and web threats live, with alert systems and historical analysis.</div>
+            <div class="project-tags">
+              <span class="tag">Flutter</span><span class="tag">GetX</span>
+              <span class="tag">REST API</span><span class="tag">Charts</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;margin-bottom:0">
+        <div class="section-eyebrow" style="justify-content:center">Get In Touch</div>
+        <h2 class="section-title" style="text-align:center">Let's Build Something <span>Together</span></h2>
+        <p class="section-sub" style="margin:0 auto;text-align:center">
+          Open to freelance, remote, and contract work. No shortcuts. No fluff. Just solid code.
+        </p>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="contact-info reveal d1">
+          <h3>Ready to start?</h3>
+          <p>Whether it's a Flutter app, a native Android product, or a security-hardened mobile solution — I bring full
+            commitment. Let's build something that actually works.</p>
+          <div class="contact-methods">
+            <a href="mailto:contact@pesums.com" class="contact-method">
+              <div class="cm-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <div class="cm-label">Email</div>
+                <div class="cm-value">contact@pesums.com</div>
+              </div>
+            </a>
+            <a href="https://pesums.com" target="_blank" class="contact-method">
+              <div class="cm-icon"><i class="fas fa-globe"></i></div>
+              <div>
+                <div class="cm-label">Website</div>
+                <div class="cm-value">pesums.com</div>
+              </div>
+            </a>
+            <a href="" class="contact-method">
+              <div class="cm-icon"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="cm-label">Profile</div>
+                <div class="cm-value">younis.pesums.com</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form reveal d2">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Your Name <span style="color:#e53e3e">*</span></label>
+              <input id="cf-name" type="text" class="form-input" placeholder="Agent Smith :)"
+                oninput="clearError(this)" />
+              <span class="field-error" id="err-name">Name is required</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address <span style="color:#e53e3e">*</span></label>
+              <input id="cf-email" type="email" class="form-input" placeholder="matrix@smith.com"
+                oninput="clearError(this)" />
+              <span class="field-error" id="err-email">Valid email is required</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Project Type <span style="color:#e53e3e">*</span></label>
+            <select id="cf-type" class="form-input" onchange="clearError(this)">
+              <option value="" disabled selected>Select a service...</option>
+
+              <!-- Mobile Development -->
+              <optgroup label="── Mobile Development">
+                <option>Flutter App (Android)</option>
+                <option>Native Android App (Kotlin)</option>
+                <option>Flutter + Backend (Full Stack)</option>
+              </optgroup>
+
+              <!-- Security Services -->
+              <optgroup label="── Security &amp; Privacy">
+                <option>Mobile App Security &amp; Hardening</option>
+                <option>Privacy-First App Development</option>
+                <option>Web Application Security</option>
+                <option>Cyber Threat Analysis &amp; Monitoring</option>
+                <option>Internet Security Consulting</option>
+              </optgroup>
+
+              <!-- Other -->
+              <optgroup label="── Other">
+                <option>Business Web + Mobile Solution</option>
+                <option>Custom Software / Automation</option>
+                <option>Other — Let me explain</option>
+              </optgroup>
+            </select>
+            <span class="field-error" id="err-type">Please select a project type</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tell me about your project <span style="color:#e53e3e">*</span></label>
+            <textarea id="cf-msg" class="form-input" placeholder="What do you need, timeline, budget..."
+              oninput="clearError(this)"></textarea>
+            <span class="field-error" id="err-msg">Please describe your project</span>
+          </div>
+          <button class="btn-submit" id="cf-btn" onclick="sendContactEmail()">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .field-error {
+      display: none;
+      font-size: 0.75rem;
+      color: #e53e3e;
+      margin-top: 5px;
+      font-family: var(--body);
+      font-weight: 500;
+    }
+
+    .form-input.invalid {
+      border-color: #e53e3e !important;
+      background: #fff5f5;
+    }
+
+    .form-input.invalid:focus {
+      border-color: #e53e3e !important;
+      box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+    }
+  </style>
+
+  <script>
+    function markError(inputId, errId) {
+      const input = document.getElementById(inputId);
+      const err = document.getElementById(errId);
+      input.classList.add('invalid');
+      err.style.display = 'block';
+    }
+
+    function clearError(el) {
+      el.classList.remove('invalid');
+      const errId = 'err-' + el.id.replace('cf-', '');
+      const err = document.getElementById(errId);
+      if (err) err.style.display = 'none';
+    }
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function sendContactEmail() {
+      const name = document.getElementById('cf-name');
+      const email = document.getElementById('cf-email');
+      const type = document.getElementById('cf-type');
+      const message = document.getElementById('cf-msg');
+
+      let valid = true;
+
+      if (!name.value.trim()) {
+        markError('cf-name', 'err-name'); valid = false;
+      }
+      if (!email.value.trim() || !isValidEmail(email.value.trim())) {
+        markError('cf-email', 'err-email'); valid = false;
+      }
+      if (!type.value) {
+        markError('cf-type', 'err-type'); valid = false;
+      }
+      if (!message.value.trim()) {
+        markError('cf-msg', 'err-msg'); valid = false;
+      }
+
+      if (!valid) return;
+
+      const subject = encodeURIComponent(`[Portfolio] ${type.value} — from ${name.value.trim()}`);
+      const body = encodeURIComponent(
+        `Name: ${name.value.trim()}
+Email: ${email.value.trim()}
+Project Type: ${type.value}
+
+Message:
+${message.value.trim()}`
+      );
+
+      const btn = document.getElementById('cf-btn');
+      btn.innerHTML = '<i class="fas fa-check"></i> Opening Email...';
+      btn.style.background = '#16a34a';
+      btn.disabled = true;
+
+      window.location.href = `mailto:contact@pesums.com?subject=${subject}&body=${body}`;
+
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    }
+  </script>
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2026 <span>younis</span> — pesums.com — All rights reserved.
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          e.target.querySelectorAll('.bar-fill').forEach(b => {
+            b.style.width = b.dataset.width + '%';
+          });
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Skill bars standalone
+    document.querySelectorAll('.bar-fill').forEach(b => {
+      const bo = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) b.style.width = b.dataset.width + '%' });
+      }, { threshold: 0.5 });
+      bo.observe(b);
+    });
+
+    // Contact submit
+    document.querySelector('.btn-submit').addEventListener('click', function () {
+      const btn = this;
+      btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+      btn.style.background = '#16a34a';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+        btn.style.background = '';
+      }, 1);
+    });
+
+    // Nav active
+    const secs = document.querySelectorAll('section[id]');
+    const navAs = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      secs.forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id });
+      navAs.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--blue)' : '';
+      });
+    });
+  </script>
+</body>
+
+</html>
